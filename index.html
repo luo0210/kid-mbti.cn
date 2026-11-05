@@ -3,1590 +3,565 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>你的内心小孩 MBTI 快速入门 - 内心文档</title>
-<meta name="description" content="28 道题，4 个选项，测出你内心小孩的 MBTI 类型（16 种结果）。本指南将帮助你在 5 分钟内找到那个一直住在你心里的小孩。">
+<title>测测你的内在天赋</title>
 <style>
 :root{
-  /* ===== 童趣糖果色系 ===== */
-  --canvas-default:#fffdf7;          /* 奶油白 */
-  --canvas-subtle:#fff6e9;           /* 淡奶油 */
-  --canvas-inset:#ffeee0;            /* 浅桃 */
-  --border-default:#ffc9b5;          /* 浅橘粉 */
-  --border-muted:#ffe6d5;            /* 淡橘 */
-  --border-subtle:#ffd7c2;
-  --text-default:#3d2b3d;            /* 可可紫，比纯黑柔和 */
-  --text-muted:#8a7684;              /* 灰莓 */
-
-  --accent:#ff7a59;                  /* 橘子汽水（主色） */
-  --accent-subtle:#ffe8de;           /* 主色浅底 */
-  --accent-strong:#f2603c;
-  --accent-ink:#ffffff;
-
-  --pink:#ff8fb1;                    /* 糖果粉 */
-  --pink-subtle:#ffe3ec;
-  --yellow:#ffc94d;                  /* 柠檬黄 */
-  --yellow-subtle:#fff4d1;
-  --mint:#4fc9a6;                    /* 薄荷绿 */
-  --mint-subtle:#dcf7ef;
-  --blue:#6fb6ff;                    /* 泡泡蓝 */
-  --blue-subtle:#e1f0ff;
-  --grape:#a98bff;                   /* 葡萄紫 */
-  --grape-subtle:#ece5ff;
-
-  --header-bg:#ffb199;               /* 落日橘（渐变起点） */
-  --header-bg-2:#ffd6a5;             /* 渐变终点 */
-  --header-fg:#6b3b2e;               /* 深棕 */
-  --header-fg-strong:#43231a;
-
-  --mono:"Mona Sans Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
-  --sans:"Mona Sans",-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Helvetica,Arial,sans-serif;
-  --docs-header-height:64px;
-  --card-shadow:0 2px 10px rgba(255,145,105,.12);
-  --radius:14px;
+  --bg:#F0F7FA;            /* 页面底色 */
+  --mist:#C7E4EC;          /* 雾蓝 */
+  --ink:#6D7795;           /* 主文字 / 按钮 */
+  --lilac:#D8C8E8;         /* 淡紫 */
+  --mint:#A9D6CF;          /* 薄荷 */
+  --ink-deep:#4a5270;
+  --card:#ffffff;
+  --radius:20px;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
 }
-[data-theme="dark"]{
-  --canvas-default:#1e1a24;          /* 夜空紫 */
-  --canvas-subtle:#262130;
-  --canvas-inset:#2e2739;
-  --border-default:#5a4a63;
-  --border-muted:#37303f;
-  --border-subtle:#453b4f;
-  --text-default:#f6eef7;
-  --text-muted:#b4a4b8;
-
-  --accent:#ff9776;
-  --accent-subtle:#40292c;
-  --accent-strong:#ffb196;
-  --accent-ink:#2b1b1f;
-
-  --pink:#ff9ec0;   --pink-subtle:#3d2532;
-  --yellow:#ffd166; --yellow-subtle:#3d3320;
-  --mint:#5fd9b6;   --mint-subtle:#1f3833;
-  --blue:#84c2ff;   --blue-subtle:#202f42;
-  --grape:#b79aff;  --grape-subtle:#2f2745;
-
-  --header-bg:#3a2c3f;
-  --header-bg-2:#503b46;
-  --header-fg:#e6d7e4;
-  --header-fg-strong:#ffffff;
-  --card-shadow:none;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
 body{
-  margin:0;
-  background:var(--canvas-default);
-  background-image:
-    radial-gradient(circle at 12% 8%, rgba(255,201,77,.13) 0 60px, transparent 61px),
-    radial-gradient(circle at 88% 4%, rgba(255,143,177,.13) 0 46px, transparent 47px),
-    radial-gradient(circle at 78% 62%, rgba(79,201,166,.10) 0 54px, transparent 55px),
-    radial-gradient(circle at 6% 78%, rgba(169,139,255,.10) 0 40px, transparent 41px);
-  background-attachment:fixed;
-  color:var(--text-default);
   font-family:var(--sans);
-  font-size:16px;
-  line-height:1.65;
+  background:linear-gradient(160deg,var(--bg) 0%,#e7f0f5 60%,var(--mist) 130%);
+  color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  min-height:100vh;padding:20px;
   -webkit-font-smoothing:antialiased;
 }
-[data-theme="dark"] body{
-  background-image:
-    radial-gradient(circle at 12% 8%, rgba(255,201,77,.07) 0 60px, transparent 61px),
-    radial-gradient(circle at 88% 4%, rgba(255,143,177,.07) 0 46px, transparent 47px),
-    radial-gradient(circle at 78% 62%, rgba(79,201,166,.06) 0 54px, transparent 55px),
-    radial-gradient(circle at 6% 78%, rgba(169,139,255,.07) 0 40px, transparent 41px);
+.app{
+  width:100%;max-width:560px;min-height:640px;
+  /* 移动端铺满视口高度；桌面端限制在 900px 内 */
+  height:calc(100vh - 40px);max-height:900px;
+  background:var(--card);
+  border-radius:32px;
+  box-shadow:0 20px 60px rgba(109,119,149,.18);
+  padding:36px 30px 32px;
+  display:flex;flex-direction:column;
+  position:relative;overflow-x:hidden;overflow-y:auto;
 }
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-code{
-  font-family:var(--mono);
-  font-size:85%;
-  background:var(--canvas-inset);
-  border-radius:6px;
-  padding:.1em .3em;
+.app::before,.app::after{
+  content:'';position:absolute;border-radius:50%;pointer-events:none;
 }
+.app::before{width:220px;height:220px;background:var(--mist);opacity:.35;top:-90px;right:-70px}
+.app::after{width:260px;height:260px;background:var(--lilac);opacity:.30;bottom:-110px;left:-90px}
 
-/* ---------- Header ---------- */
-header.site{
-  position:sticky;top:0;z-index:50;
-  background:linear-gradient(100deg,var(--header-bg) 0%,var(--header-bg-2) 55%,#ffe3b3 100%);
-  height:var(--docs-header-height);
-  display:flex;align-items:center;
-  padding:0 24px;
-  gap:16px;
-  color:var(--header-fg);
-  box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 2px 12px rgba(255,150,110,.25);
-}
-[data-theme="dark"] header.site{
-  background:linear-gradient(100deg,var(--header-bg) 0%,var(--header-bg-2) 100%);
-  box-shadow:0 1px 0 rgba(255,255,255,.06) inset;
-}
-.brand{display:flex;align-items:center;gap:10px;color:var(--header-fg-strong);font-weight:700;font-size:16px;letter-spacing:.2px}
-.brand svg{display:block}
-.brand .divider{width:1px;height:22px;background:currentColor;opacity:.35}
-.header-spacer{flex:1}
-.search-box{
-  display:flex;align-items:center;gap:8px;
-  border:1.5px solid rgba(107,59,46,.35);border-radius:99px;
-  padding:4px 12px 4px 10px;
-  font-size:13px;color:var(--header-fg);
-  min-width:220px;height:32px;
-  background:rgba(255,255,255,.55);cursor:text;
-}
-[data-theme="dark"] .search-box{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25)}
-.search-box kbd{
-  margin-left:auto;font-family:var(--mono);font-size:11px;
-  border:1px solid currentColor;border-radius:99px;padding:0 6px;opacity:.6;background:none;
-}
-.icon-btn{
-  width:32px;height:32px;border-radius:99px;border:1.5px solid rgba(107,59,46,.35);
-  background:rgba(255,255,255,.5);color:var(--header-fg);cursor:pointer;
-  display:grid;place-items:center;font-size:14px;
-  transition:transform .18s,background .18s;
-}
-.icon-btn:hover{background:#fff;transform:rotate(18deg)}
-[data-theme="dark"] .icon-btn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25)}
-[data-theme="dark"] .icon-btn:hover{background:rgba(255,255,255,.2)}
-@media (max-width:640px){
-  header.site{padding:0 12px;gap:8px}
-  .brand{font-size:15px;white-space:nowrap}
-  .brand .divider{display:none}
-  .search-box{min-width:0;width:auto;flex:1;max-width:160px;overflow:hidden}
-  .search-box > span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .search-box kbd{display:none}
-  .subbar{padding:0 12px;font-size:13px}
-  .layout{padding:20px 16px 48px}
-  h1.title{font-size:1.875rem}
-  .question{padding:16px}
-  .question h3{font-size:1rem}
-  .option{font-size:14px;padding:10px 12px}
-  .md h2{font-size:1.25rem;margin-top:32px}
-  .result h2.res-title{font-size:1.6rem}
-  table.spec th{width:96px;font-size:12px}
-  table.spec td{font-size:13px}
-  footer.site{padding:24px 16px 40px}
-  .pager a{min-width:0;flex:1}
-}
+/* 页面切换 */
+.page{display:none;flex:1;flex-direction:column;position:relative;z-index:1}
+.page.show{display:flex;animation:in .4s ease}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-/* ---------- Secondary bar ---------- */
-.subbar{
-  position:sticky;top:var(--docs-header-height);z-index:40;
-  background:var(--canvas-default);
-  border-bottom:1px solid var(--border-muted);
-  height:45px;display:flex;align-items:center;
-  padding:0 24px;gap:8px;
-  font-size:14px;color:var(--text-muted);
-  overflow-x:auto;
+/* ---------- 封面 ---------- */
+.cover{text-align:center;justify-content:flex-start}
+.cover > *{flex:none}
+.cover .kicker{
+  display:inline-block;font-size:13px;letter-spacing:.35em;
+  margin-top:27%;margin-bottom:18px;
+  padding:6px 18px;border:1.5px solid var(--mist);border-radius:99px;
+  align-self:center;color:var(--ink);opacity:.75;
 }
-.subbar .crumb{display:flex;align-items:center;gap:8px;white-space:nowrap}
-.subbar .crumb a{color:var(--text-muted)}
-.subbar .crumb a:hover{color:var(--accent)}
-.subbar .sep{opacity:.5}
-.subbar .current{color:var(--text-default);font-weight:500}
-.progress{position:absolute;left:0;bottom:-2px;height:3px;background:linear-gradient(90deg,var(--yellow),var(--accent),var(--pink),var(--grape));width:0;transition:width .25s ease;border-radius:0 99px 99px 0}
-
-/* ---------- Layout ---------- */
-.layout{
-  max-width:1180px;margin:0 auto;padding:32px 24px 64px;
-  display:grid;
-  grid-template-columns:minmax(0,760px) 300px;
-  column-gap:56px;
-  align-items:start;
+.cover h1{
+  font-size:2.3rem;font-weight:800;line-height:1.25;
+  color:var(--ink-deep);letter-spacing:2px;margin-bottom:14px;
 }
-@media (max-width:1011.98px){
-  .layout{grid-template-columns:minmax(0,1fr);max-width:760px;padding-top:16px}
-  aside.toc{display:none}
-}
-
-h1.title{
-  font-size:2.5rem;font-weight:700;line-height:1.22;letter-spacing:-.5px;
-  margin:0 0 16px;
-  background:linear-gradient(96deg,#ff7a59 0%,#ff8fb1 45%,#a98bff 100%);
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-  display:inline-block;
-}
-@media(max-width:640px){h1.title{font-size:2rem}}
-.lead{
-  color:var(--text-muted);font-size:1rem;line-height:1.7;
-  margin:0;
-}
-.intro{padding-bottom:32px;border-bottom:2px dashed var(--border-subtle);margin-bottom:8px}
-
-/* permission callout */
-.permissions{
-  border:2px solid var(--border-subtle);border-radius:var(--radius);
-  padding:16px;margin-top:24px;
-  background:linear-gradient(135deg,var(--yellow-subtle),var(--pink-subtle) 120%);
-}
-.permissions h2{font-size:1rem;margin:0 0 8px;font-weight:700}
-.permissions .row{display:flex;gap:8px;color:var(--text-muted);font-size:14px}
-.permissions .row svg{flex:none;margin-top:4px;color:var(--accent)}
-
-/* markdown body */
-.md h2{
-  font-size:1.5rem;font-weight:700;line-height:1.3;
-  margin:40px 0 16px;padding-bottom:8px;
-  border-bottom:2px dashed var(--border-subtle);
-  scroll-margin-top:130px;
-  display:flex;align-items:center;gap:8px;
-}
-.md h2::before{
-  content:'';flex:none;width:10px;height:10px;border-radius:50%;
-  background:var(--accent);
-  box-shadow:16px 0 0 var(--yellow),32px 0 0 var(--mint);
-  margin-right:34px;
-}
-.md h3{font-size:1.125rem;font-weight:700;margin:24px 0 8px}
-.md p{margin:0 0 16px}
-.md ul,.md ol{margin:0 0 16px;padding-left:1.6em}
-.md li{margin-bottom:6px}
-.md li::marker{color:var(--pink)}
-.md strong{color:var(--accent-strong)}
-
-/* note / tip */
-.callout{
-  border-left:6px solid var(--yellow);
-  background:var(--yellow-subtle);
-  border-radius:0 var(--radius) var(--radius) 0;
-  padding:14px 18px;
-  margin:0 0 16px;
-  font-size:14px;
-  color:var(--text-default);
-}
-.callout strong{color:var(--accent-strong)}
-.callout.warn{border-left-color:var(--grape);background:var(--grape-subtle)}
-
-/* ---------- TOC ---------- */
-aside.toc{
-  position:sticky;top:calc(var(--docs-header-height) + 45px + 24px);
-  font-size:14px;
-  max-height:calc(100vh - var(--docs-header-height) - 100px);
-  overflow-y:auto;
-}
-aside.toc h2{font-size:12px;text-transform:uppercase;letter-spacing:.15px;color:var(--text-muted);margin:0 0 12px;font-weight:700}
-aside.toc ul{list-style:none;margin:0;padding:0;border-left:2px solid var(--border-muted)}
-aside.toc li a{
-  display:block;padding:6px 0 6px 12px;margin-left:-2px;
-  color:var(--text-muted);border-left:3px solid transparent;
-  line-height:1.4;border-radius:0 6px 6px 0;
-}
-aside.toc li a:hover{color:var(--accent);text-decoration:none;background:var(--canvas-subtle)}
-aside.toc li a.active{color:var(--accent-strong);font-weight:700;border-left-color:var(--accent);background:var(--accent-subtle)}
-
-/* ---------- Quiz ---------- */
-.quiz-head{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  margin-bottom:8px;font-size:13px;color:var(--text-muted);
-}
-.bar{height:10px;background:var(--canvas-inset);border-radius:99px;overflow:hidden;margin-bottom:24px}
-.bar > span{
-  display:block;height:100%;width:0;border-radius:99px;
-  background:linear-gradient(90deg,var(--yellow),var(--accent),var(--pink));
-  transition:width .3s ease;
-}
-
-.question{
-  border:2px solid var(--border-subtle);border-radius:20px;padding:22px;
-  background:var(--canvas-default);box-shadow:var(--card-shadow);
-}
-.question .no{
-  display:inline-block;
-  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  color:#fff;background:var(--grape);
-  border-radius:99px;padding:2px 10px;margin-bottom:8px;
-}
-[data-theme="dark"] .question .no{color:#211a2c}
-.question h3{margin:6px 0 18px;font-size:1.125rem;font-weight:700;line-height:1.5}
-.options{display:grid;gap:10px}
-.option{
-  display:flex;gap:12px;align-items:flex-start;
-  border:2px solid var(--border-muted);border-radius:var(--radius);
-  padding:12px 14px;cursor:pointer;
-  transition:border-color .15s,background .15s,transform .15s,box-shadow .15s;
-  font-size:15px;line-height:1.5;text-align:left;background:var(--canvas-default);
-  color:var(--text-default);font-family:inherit;width:100%;
-}
-.option:hover{border-color:var(--accent);background:var(--accent-subtle);transform:translateX(3px)}
-.option .key{
-  flex:none;width:24px;height:24px;border-radius:50%;
-  border:2px solid var(--border-default);background:var(--canvas-subtle);
-  display:grid;place-items:center;
-  font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text-muted);
-  margin-top:1px;transition:all .15s;
-}
-.option:nth-child(1) .key{border-color:var(--pink);color:var(--pink)}
-.option:nth-child(2) .key{border-color:var(--yellow);color:#c98f00}
-.option:nth-child(3) .key{border-color:var(--mint);color:#1c9c7c}
-.option:nth-child(4) .key{border-color:var(--blue);color:#3b8ede}
-.option.selected{
-  border-color:var(--accent);background:var(--accent-subtle);
-  box-shadow:0 0 0 3px rgba(255,122,89,.18);
-}
-.option.selected .key{background:var(--accent);border-color:var(--accent);color:#fff}
-[data-theme="dark"] .option.selected .key{color:#2b1b1f}
-
-.nav-row{display:flex;align-items:center;justify-content:space-between;margin-top:16px;gap:12px}
-button.btn{
-  font-family:inherit;font-size:14px;font-weight:600;
-  border-radius:99px;padding:8px 18px;height:36px;cursor:pointer;
-  border:2px solid var(--border-subtle);background:var(--canvas-default);color:var(--text-default);
-  display:inline-flex;align-items:center;gap:6px;
-  transition:all .15s;
-}
-button.btn:hover{background:var(--canvas-inset);border-color:var(--accent)}
-button.btn.primary{
-  background:linear-gradient(100deg,var(--accent),var(--pink));
-  border-color:transparent;color:#fff;
-  box-shadow:0 3px 10px rgba(255,122,89,.35);
-}
-button.btn.primary:hover{filter:brightness(1.05);transform:translateY(-1px)}
-button.btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none;transform:none;filter:none}
-button.btn.ghost{border-color:transparent;background:transparent;color:var(--text-muted)}
-button.btn.ghost:hover{color:var(--accent);background:var(--canvas-inset);border-color:transparent}
-
-/* ---------- Result ---------- */
-.result{display:none}
-.result.show{display:block;animation:fade .35s ease}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.badge-code{
-  display:inline-block;
-  font-family:var(--mono);font-size:12px;letter-spacing:.15em;
-  color:#fff;background:var(--mint);
-  border-radius:99px;padding:3px 12px;
-  text-transform:uppercase;margin-bottom:10px;
-}
-[data-theme="dark"] .badge-code{color:#10261f}
-.result h2.res-title{
-  font-size:2rem;font-weight:700;margin:0 0 6px;border:0;padding:0;line-height:1.3;
-  background:linear-gradient(96deg,#ff7a59,#ff8fb1 50%,#a98bff);
+.cover h1 .hl{
+  background:linear-gradient(120deg,var(--lilac),var(--mint));
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  display:inline-block;
 }
-.result .res-sub{color:var(--text-muted);font-size:15px;margin:0 0 20px}
-.dims{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0 8px}
-@media(max-width:640px){.dims{grid-template-columns:repeat(2,1fr)}}
-.dim{border:2px solid var(--border-muted);border-radius:var(--radius);padding:12px;background:var(--canvas-default)}
-.dim .dim-label{font-size:12px;color:var(--text-muted);font-family:var(--mono);margin-bottom:8px;display:flex;justify-content:space-between;font-weight:700}
-.dim .dim-bar{height:8px;border-radius:99px;background:var(--canvas-inset);overflow:hidden;display:flex}
-.dim .dim-bar i{display:block;height:100%}
-.dim .dim-bar i.l{background:linear-gradient(90deg,var(--accent),var(--pink))}
-.dim .dim-bar i.r{background:var(--border-subtle)}
-.dim:nth-child(1) .dim-bar i.l{background:linear-gradient(90deg,var(--pink),#ffb3c9)}
-.dim:nth-child(2) .dim-bar i.l{background:linear-gradient(90deg,var(--blue),#a8d5ff)}
-.dim:nth-child(3) .dim-bar i.l{background:linear-gradient(90deg,var(--mint),#8ee6cd)}
-.dim:nth-child(4) .dim-bar i.l{background:linear-gradient(90deg,var(--grape),#c9b6ff)}
-.dim .dim-val{font-size:13px;margin-top:8px;color:var(--text-default);font-weight:700}
+.cover .sub{font-size:15px;color:var(--ink);opacity:.85;line-height:1.7;margin-bottom:8px}
+.cover .intro{
+  font-size:14px;color:var(--ink);opacity:.78;letter-spacing:.5px;
+  line-height:1.6;align-self:center;max-width:300px;margin-top:2px;
+}
+.cover .dots{display:flex;gap:8px;justify-content:center;margin:26px 0 8px}
+.cover .dots i{width:12px;height:12px;border-radius:50%}
+.cover .dots i:nth-child(1){background:var(--mist)}
+.cover .dots i:nth-child(2){background:var(--lilac)}
+.cover .dots i:nth-child(3){background:var(--mint)}
+.cover .dots i:nth-child(4){background:var(--ink);opacity:.35}
+.btn{
+  font-family:inherit;border:none;cursor:pointer;
+  background:var(--ink);color:#fff;
+  font-size:17px;font-weight:700;letter-spacing:6px;
+  padding:16px 54px;border-radius:99px;
+  box-shadow:0 10px 24px rgba(109,119,149,.35);
+  transition:transform .18s,box-shadow .18s;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(109,119,149,.45)}
+.start-wrap{margin-top:auto;margin-bottom:18px;display:flex;justify-content:center}
+.cover .hint{font-size:12px;color:var(--ink);opacity:.6;margin:14px 0 125px;text-align:center}
 
-table.spec{width:100%;border-collapse:separate;border-spacing:0;margin:8px 0 24px;font-size:14px;border:2px solid var(--border-subtle);border-radius:var(--radius);overflow:hidden}
-table.spec th,table.spec td{border-bottom:1px solid var(--border-muted);padding:10px 14px;text-align:left;vertical-align:top}
-table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:0}
-table.spec th{background:var(--canvas-subtle);font-weight:700;width:130px;color:var(--text-muted);font-size:13px}
-table.spec tr:nth-child(1) td{color:var(--accent-strong);font-weight:600}
+/* ---------- 答题页 ---------- */
+.q-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.q-count{font-size:13px;color:var(--ink);opacity:.7;letter-spacing:.1em}
+.q-group{font-size:12px;color:#fff;background:var(--ink);opacity:.9;border-radius:99px;padding:3px 12px;letter-spacing:.15em}
+.track{height:8px;background:var(--bg);border-radius:99px;overflow:hidden;margin-bottom:26px}
+.track span{display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--mist),var(--lilac),var(--mint));
+  transition:width .35s ease}
+.q-title{font-size:1.2rem;font-weight:700;color:var(--ink-deep);line-height:1.6;margin-bottom:22px}
+.opts{display:grid;gap:12px}
+.opt{
+  font-family:inherit;font-size:15px;line-height:1.55;text-align:left;
+  border:2px solid var(--mist);background:#fff;color:var(--ink);
+  border-radius:16px;padding:14px 16px 14px 14px;cursor:pointer;
+  display:flex;gap:12px;align-items:flex-start;width:100%;
+  transition:border-color .15s,background .15s,transform .15s;
+}
+.opt:hover{border-color:var(--ink);transform:translateX(3px)}
+.opt .key{
+  flex:none;width:26px;height:26px;border-radius:50%;
+  border:2px solid var(--mist);display:grid;place-items:center;
+  font-size:13px;font-weight:700;color:var(--ink);margin-top:1px;
+}
+.opt:nth-child(1) .key{border-color:var(--mist);color:var(--ink)}
+.opt:nth-child(2) .key{border-color:var(--lilac);color:var(--ink-deep)}
+.opt:nth-child(3) .key{border-color:var(--mint);color:var(--ink-deep)}
+.opt:nth-child(4) .key{border-color:var(--ink);color:var(--ink-deep)}
+.opt.sel{border-color:var(--ink);background:var(--bg);font-weight:600}
+.opt.sel .key{background:var(--ink);border-color:var(--ink);color:#fff}
+.q-nav{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:18px}
+.link-btn{
+  font-family:inherit;background:none;border:none;cursor:pointer;
+  color:var(--ink);opacity:.7;font-size:14px;padding:8px 4px;
+}
+.link-btn:hover{opacity:1}
+.link-btn:disabled{opacity:.25;cursor:not-allowed}
 
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
-.tag{
-  font-size:12px;font-family:var(--mono);font-weight:700;
-  border:2px solid var(--pink);border-radius:99px;
-  padding:2px 12px;color:#e0568c;background:var(--pink-subtle);
+/* ---------- 结果页 ---------- */
+.result-top{text-align:center;margin-bottom:8px}
+.result-top .r-kicker{font-size:12px;letter-spacing:.3em;opacity:.7;margin-bottom:10px;display:block}
+.animal-big svg{width:74px;height:74px;display:block}
+.m-grid button .em svg{width:26px;height:26px;display:block;margin:0 auto}
+.animal-big{
+  width:120px;height:120px;margin:0 auto 14px;border-radius:36px;
+  background:linear-gradient(145deg,var(--mist),var(--lilac));
+  display:grid;place-items:center;font-size:56px;
+  box-shadow:0 12px 26px rgba(109,119,149,.25);
 }
-.tag:nth-child(2){border-color:var(--yellow);color:#b57c00;background:var(--yellow-subtle)}
-.tag:nth-child(3){border-color:var(--mint);color:#1c9c7c;background:var(--mint-subtle)}
-.tag:nth-child(4){border-color:var(--grape);color:#7a5cf0;background:var(--grape-subtle)}
-[data-theme="dark"] .tag{color:var(--pink)}
-[data-theme="dark"] .tag:nth-child(2){color:var(--yellow)}
-[data-theme="dark"] .tag:nth-child(3){color:var(--mint)}
-[data-theme="dark"] .tag:nth-child(4){color:var(--grape)}
-.share-box{
-  border:2px dashed var(--border-subtle);border-radius:var(--radius);padding:16px;
-  background:linear-gradient(135deg,var(--mint-subtle),var(--blue-subtle));margin-bottom:24px;
-}
-.share-box h3{margin:0 0 10px;font-size:14px;font-weight:700}
-.copy-line{
-  display:flex;gap:8px;align-items:center;
-  font-family:var(--mono);font-size:13px;
-  border:2px solid var(--border-subtle);border-radius:10px;background:var(--canvas-default);
-  padding:8px 12px;margin-bottom:10px;color:var(--text-muted);
-  overflow-x:auto;white-space:nowrap;
-}
-.all-types{margin-top:8px}
-.all-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-@media(max-width:640px){.all-grid{grid-template-columns:repeat(2,1fr)}}
-.all-grid div{
-  border:2px solid var(--border-muted);border-radius:10px;padding:10px;
-  font-size:13px;line-height:1.35;background:var(--canvas-default);
+.r-name{font-size:1.9rem;font-weight:800;color:var(--ink-deep);letter-spacing:2px}
+.r-code{font-size:13px;letter-spacing:.2em;opacity:.65;margin-top:4px}
+.r-foot{font-size:14px;font-style:normal;color:var(--ink);opacity:.9;margin-top:6px}
+.r-block{background:var(--bg);border-radius:18px;padding:16px 18px;margin-top:14px}
+.r-block h3{font-size:14px;color:var(--ink-deep);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.r-block h3::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.r-block.c2 h3::before{background:var(--lilac)}
+.r-block p,.r-block li{font-size:14px;line-height:1.75;color:var(--ink)}
+.r-block ul{list-style:none}
+.r-block li{padding-left:4px;margin-bottom:7px}
+.r-block li b{color:var(--ink-deep)}
+.r-dims{display:flex;gap:8px;margin-top:14px}
+.r-dims .d{flex:1;background:var(--bg);border-radius:14px;padding:10px 8px;text-align:center}
+.r-dims .d b{display:block;font-size:15px;color:var(--ink-deep)}
+.r-dims .d span{font-size:11px;opacity:.7}
+.r-dims .d .bar{height:5px;background:#e4e9f0;border-radius:99px;margin-top:6px;overflow:hidden}
+.r-dims .d .bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--mint),var(--lilac))}
+.matrix{margin-top:18px}
+.matrix h3{font-size:13px;text-align:center;letter-spacing:.2em;opacity:.75;margin-bottom:12px}
+.m-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+@media(max-width:420px){.m-grid{grid-template-columns:repeat(4,1fr)}}
+.m-grid button{
+  font-family:inherit;border:2px solid transparent;background:var(--bg);
+  border-radius:14px;padding:8px 2px 6px;cursor:pointer;text-align:center;
   transition:transform .15s,border-color .15s;
 }
-.all-grid div:hover{transform:translateY(-2px);border-color:var(--border-default)}
-.all-grid div b{display:block;font-family:var(--mono);font-size:12px;color:var(--text-muted);font-weight:700;margin-bottom:2px}
-.all-grid div.me{border-color:var(--accent);background:linear-gradient(135deg,var(--accent-subtle),var(--pink-subtle))}
-.all-grid div.me b{color:var(--accent-strong)}
-
-footer.site{
-  border-top:2px dashed var(--border-subtle);
-  padding:32px 24px 56px;font-size:13px;color:var(--text-muted);
-  background:var(--canvas-subtle);
+.m-grid button:hover{transform:translateY(-3px)}
+.m-grid button.cur{border-color:var(--ink);background:#fff}
+.m-grid button .em{font-size:22px;display:block}
+.m-grid button .lb{font-size:9px;color:var(--ink);opacity:.75;margin-top:2px;display:block}
+.r-actions{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.btn.small{font-size:14px;letter-spacing:2px;padding:11px 26px;box-shadow:0 8px 18px rgba(109,119,149,.3)}
+.btn.ghosty{background:#fff;color:var(--ink);border:2px solid var(--mist);box-shadow:none}
+.toast{
+  position:fixed;left:50%;bottom:30px;transform:translateX(-50%);
+  background:var(--ink);color:#fff;padding:9px 18px;border-radius:99px;
+  font-size:13px;z-index:99;opacity:0;transition:opacity .25s;pointer-events:none;
 }
-footer.site .inner{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between}
-footer.site a{color:var(--text-muted)}
-footer.site a:hover{color:var(--accent)}
-.pager{display:flex;gap:12px;flex-wrap:wrap}
-.pager a{
-  border:2px solid var(--border-subtle);border-radius:var(--radius);padding:10px 14px;
-  font-size:13px;color:var(--text-default);min-width:180px;font-weight:600;
-  transition:border-color .15s,transform .15s;
-}
-.pager a:hover{border-color:var(--accent);text-decoration:none;transform:translateY(-2px)}
-.pager .dir{display:block;font-size:11px;color:var(--text-muted);margin-bottom:2px;font-weight:400}
-.hidden{display:none!important}
-
-/* ---------- Mascot / Q版形象 ---------- */
-.res-hero{
-  display:flex;gap:22px;align-items:center;
-  margin:0 0 20px;
-}
-@media(max-width:640px){.res-hero{flex-direction:column;align-items:flex-start;gap:14px}}
-.mascot-frame{
-  flex:none;width:168px;height:168px;
-  border-radius:28px;
-  background:radial-gradient(circle at 50% 78%,#fff 0%,var(--mascot-bg,#ffe8de) 70%);
-  border:3px solid #fff;
-  box-shadow:0 6px 0 rgba(0,0,0,.06),0 10px 24px rgba(255,145,105,.22);
-  display:grid;place-items:center;
-  overflow:hidden;position:relative;
-}
-.mascot-frame::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 30% 18%,rgba(255,255,255,.7),transparent 45%);
-  pointer-events:none;
-}
-[data-theme="dark"] .mascot-frame{
-  background:radial-gradient(circle at 50% 78%,#2a2433 0%,var(--mascot-bg,#3a2c34) 70%);
-  border-color:#2e2739;
-}
-.mascot-frame svg{width:88%;height:88%;display:block}
-.mascot-frame.float svg{animation:bob 3s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-.res-hero-text{min-width:0}
-
-/* 首页画廊 */
-.roster{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:8px 0 8px;
-}
-@media(max-width:900px){.roster{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:640px){.roster{grid-template-columns:repeat(2,1fr);gap:10px}}
-.roster-card{
-  border:2px solid var(--border-muted);border-radius:18px;
-  padding:14px 10px 12px;background:var(--canvas-default);
-  text-align:center;cursor:pointer;
-  transition:transform .18s,border-color .18s,box-shadow .18s;
-  position:relative;overflow:hidden;
-}
-.roster-card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 0%,var(--mascot-bg,#ffe8de) 0%,transparent 62%);
-  opacity:.55;pointer-events:none;
-}
-.roster-card:hover{transform:translateY(-4px);border-color:var(--mascot-accent,var(--accent));box-shadow:0 8px 18px rgba(255,145,105,.2)}
-[data-theme="dark"] .roster-card::before{opacity:.22}
-[data-theme="dark"] .roster-card{background:#241f2b}
-.roster-card .avatar{position:relative;width:100%;aspect-ratio:1/1;max-height:118px;margin-bottom:8px}
-.roster-card .avatar svg{width:100%;height:100%}
-.roster-card .code{
-  position:relative;font-family:var(--mono);font-size:11px;font-weight:700;
-  letter-spacing:.08em;color:var(--mascot-accent,var(--accent));
-}
-.roster-card .nm{position:relative;font-size:13px;font-weight:700;line-height:1.35;margin-top:1px}
-.roster-card .pers{position:relative;font-size:11px;color:var(--text-muted);margin-top:3px}
-
-/* 结果页 16 格也加小头像 */
-.all-grid div{display:flex;align-items:center;gap:8px}
-.all-grid div .mini{flex:none;width:34px;height:34px}
-.all-grid div .mini svg{width:100%;height:100%}
-.all-grid div span.tt{min-width:0;overflow:hidden}
-.all-grid div b{display:block;font-family:var(--mono);font-size:11px;color:var(--text-muted);font-weight:700}
-.all-grid div em{display:block;font-style:normal;font-size:12px;line-height:1.3}
+.toast.on{opacity:1}
 </style>
 </head>
 <body>
+<div class="app">
 
-<header class="site">
-  <a class="brand" href="#">
-    <svg height="26" viewBox="0 0 16 16" width="26" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-    <span class="divider"></span>
-    <span>内心 Docs</span>
-  </a>
-  <div class="header-spacer"></div>
-  <div class="search-box" role="search" aria-label="搜索文档">
-    <svg height="16" viewBox="0 0 16 16" width="16" fill="currentColor" aria-hidden="true"><path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"/></svg>
-    <span>搜索或询问小孩</span>
-    <kbd>/</kbd>
-  </div>
-  <button class="icon-btn" id="themeBtn" title="切换明暗主题" aria-label="切换明暗主题">◐</button>
-</header>
+  <!-- 封面 -->
+  <section class="page cover show" id="p-cover">
+    <span class="kicker">INNER TALENT</span>
+    <h1>测测你的<br><span class="hl">内在天赋</span></h1>
+    <p class="intro">16 题，测出你天生擅长的那件事</p>
+    <div class="dots"><i></i><i></i><i></i><i></i></div>
+    <div class="start-wrap">
+      <button class="btn" id="startBtn">开始测试</button>
+    </div>
+    <p class="hint">凭第一反应作答 · 约 2 分钟</p>
+  </section>
 
-<div class="subbar">
-  <div class="crumb">
-    <a href="#">内心文档</a><span class="sep">/</span>
-    <a href="#">心理测试</a><span class="sep">/</span>
-    <span class="current">你的内心小孩 MBTI</span>
-  </div>
-  <div class="progress" id="scrollProgress"></div>
-</div>
+  <!-- 题目页（JS 注入） -->
+  <section class="page" id="p-quiz">
+    <div class="q-top">
+      <span class="q-count" id="qCount">Q 01 / 16</span>
+      <span class="q-group" id="qGroup">上班日常</span>
+    </div>
+    <div class="track"><span id="qBar"></span></div>
+    <h2 class="q-title" id="qTitle">题目</h2>
+    <div class="opts" id="qOpts"></div>
+    <div class="q-nav">
+      <button class="link-btn" id="prevBtn">← 上一题</button>
+      <button class="link-btn" id="quitBtn">回到首页</button>
+    </div>
+  </section>
 
-<div class="layout">
-
-  <main>
-    <div class="intro">
-      <h1 class="title" id="title-h1">你的内心小孩 MBTI</h1>
-      <p class="lead">那个住在你心里、一直没长大的小孩，其实有自己的人格类型。本指南将用 28 道题、每道 4 个选项，帮你在 5 分钟内找到它。</p>
-
-      <div class="permissions">
-        <h2>谁可以使用此测试？</h2>
-        <div class="row">
-          <svg height="16" viewBox="0 0 16 16" width="16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM6.5 7.75A.75.75 0 0 0 5.75 8.5v3a.75.75 0 0 0 1.5 0v-3A.75.75 0 0 0 6.5 7.75ZM8 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/></svg>
-          <div>所有人类均可免费使用，无需注册，无需登录，不会上传任何答题数据——所有计算都发生在你自己的浏览器里。结果仅供参考与自我对话，不构成任何心理学诊断。</div>
-        </div>
-      </div>
+  <!-- 结果页 -->
+  <section class="page" id="p-result">
+    <div class="result-top">
+      <span class="r-kicker">YOUR INNER TALENT</span>
+      <div class="animal-big" id="rEmoji">🦅</div>
+      <div class="r-name" id="rName">—</div>
+      <div class="r-code" id="rCode">—</div>
+      <em class="r-foot" id="rFoot">—</em>
     </div>
 
-    <div class="md">
-
-      <h2 id="introduction">简介</h2>
-      <p>“内心小孩”不是玄学。它是你面对压力、喜悦、委屈和好奇时，那套最原始、最不加修饰的反应方式——6 岁的你如何处理玩具坏了，30 岁的你就如何处理方案被否了。</p>
-      <p>本测试把这种反应方式拆成 4 组维度，共 <code>28</code> 道题，每题 <code>4</code> 个选项。选择时请听从第一反应，而不是“我应该怎样”。</p>
-
-      <div class="callout">
-        <strong>提示：</strong>请设想“小时候的你”，或者“在你最放松、最没有防备时的你”。不要设想“成熟懂事的你”。
-      </div>
-
-      <h2 id="dimensions">四个维度</h2>
-      <ul>
-        <li><strong>E / I（能量来源）</strong>—— 小孩从哪里充电：人群的喧闹，还是自己的小房间</li>
-        <li><strong>S / N（信息接收）</strong>—— 小孩看见的是眼前的东西，还是东西背后的故事</li>
-        <li><strong>T / F（决策方式）</strong>—— 小孩先讲道理，还是先讲感受</li>
-        <li><strong>J / P（生活节奏）</strong>—— 小孩喜欢计划好的下午，还是突如其来的冒险</li>
-      </ul>
-
-      <h2 id="roster">16 只内心小孩</h2>
-      <p>每一种类型都住着一个具体的小孩：有自己的一套衣服、一件不离手的东西、一种专属的表情。看看哪个最像你——或者，最像你藏起来的那个。</p>
-      <div class="roster" id="rosterGrid"><!-- JS 注入 --></div>
-
-      <h2 id="start">开始测试</h2>
-      <p>共 28 题，预计用时 4–6 分钟。可用键盘 <code>1</code>–<code>4</code> 选择选项，<code>←</code> <code>→</code> 翻页。</p>
-
-      <!-- ===== QUIZ ===== -->
-      <div id="quiz">
-        <div class="quiz-head">
-          <span id="qCount">第 1 题 / 共 28 题</span>
-          <span id="qDims">—</span>
-        </div>
-        <div class="bar"><span id="qBar"></span></div>
-
-        <div class="question">
-          <div class="no" id="qIndex">QUESTION 01</div>
-          <h3 id="qText">题目</h3>
-          <div class="options" id="qOptions"></div>
-        </div>
-
-        <div class="nav-row">
-          <button class="btn ghost" id="prevBtn" disabled>← 上一题</button>
-          <div style="display:flex;gap:8px">
-            <button class="btn" id="resetBtn">重置</button>
-            <button class="btn primary" id="nextBtn" disabled>下一题 →</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ===== RESULT ===== -->
-      <div id="result" class="result" aria-live="polite">
-        <div class="res-hero">
-          <div class="mascot-frame" id="rMascot"><!-- SVG 注入 --></div>
-          <div class="res-hero-text">
-            <div class="badge-code" id="rCode">RESULT</div>
-            <h2 class="res-title" id="rName">—</h2>
-            <p class="res-sub" id="rSub">—</p>
-            <div class="tags" id="rTags"></div>
-          </div>
-        </div>
-
-        <p id="rDesc"></p>
-
-        <table class="spec">
-          <tr><th>内心小孩</th><td id="rKid">—</td></tr>
-          <tr><th>最爱的玩具</th><td id="rToy">—</td></tr>
-          <tr><th>崩溃触发点</th><td id="rBreak">—</td></tr>
-          <tr><th>被安慰的方式</th><td id="rComfort">—</td></tr>
-          <tr><th>隐藏技能</th><td id="rSkill">—</td></tr>
-          <tr><th>长大后变成</th><td id="rGrown">—</td></tr>
-        </table>
-
-        <h3>四维度分布</h3>
-        <div class="dims" id="rDims"></div>
-
-        <div class="share-box">
-          <h3>分享这份结果</h3>
-          <div class="copy-line" id="rLink">—</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn" id="copyBtn">复制链接</button>
-            <button class="btn" id="copyTextBtn">复制文字结果</button>
-            <button class="btn primary" id="againBtn">重新测试</button>
-          </div>
-        </div>
-
-        <h3 class="all-types">全部 16 种内心小孩</h3>
-        <div class="all-grid" id="allGrid"></div>
-      </div>
-
-      <h2 id="next-steps">后续步骤</h2>
-      <p>测完之后，你可能还想做这些事：</p>
-      <ul>
-        <li><strong>记录第一反应</strong>：把你最犹豫的那 2–3 道题写下来，那些题往往是你长大后最被规训的部分。</li>
-        <li><strong>对照现实</strong>：观察自己在“累到不想伪装”的时候，是不是更像结果里的那个小孩。</li>
-        <li><strong>分享给一个人</strong>：找一个认识你 10 年以上的人，问他“我小时候是不是这样”，答案通常比测试更准。</li>
-      </ul>
-
-      <div class="callout warn">
-        <strong>说明：</strong>本测试是基于 MBTI 四维度的娱乐化改编，题目与结果描述均为原创虚构，不代表任何专业心理测评工具。MBTI 本身的科学效度也长期存在学术争议——把它当作一面有趣的镜子，而不是一张判决书。
-      </div>
-
-      <div class="pager">
-        <a href="#introduction"><span class="dir">上一篇</span>简介：内心小孩是什么</a>
-        <a href="#start"><span class="dir">下一篇</span>重新开始测试</a>
-      </div>
-
+    <div class="r-block">
+      <h3>你的天赋表现在</h3>
+      <p id="rDesc">—</p>
     </div>
-  </main>
 
-  <aside class="toc">
-    <h2>在本文中</h2>
-    <nav aria-label="在本文中">
-      <ul id="tocList">
-        <li><a href="#introduction">简介</a></li>
-        <li><a href="#dimensions">四个维度</a></li>
-        <li><a href="#roster">16 只内心小孩</a></li>
-        <li><a href="#start">开始测试</a></li>
-        <li><a href="#next-steps">后续步骤</a></li>
-      </ul>
-    </nav>
-  </aside>
+    <div class="r-dims" id="rDims"></div>
+
+    <div class="r-block c2">
+      <h3>高匹配职业方向</h3>
+      <ul id="rJobs"></ul>
+    </div>
+
+    <div class="r-block">
+      <h3>天赋之痛</h3>
+      <p id="rPain">—</p>
+    </div>
+
+    <div class="r-block c2">
+      <h3>七天可以试一步</h3>
+      <p id="rAct">—</p>
+    </div>
+
+    <div class="r-block">
+      <h3>请避开</h3>
+      <p id="rAvoid">—</p>
+    </div>
+
+    <div class="matrix">
+      <h3>全 部 12 只 天 赋 兽</h3>
+      <div class="m-grid" id="mGrid"></div>
+    </div>
+
+    <div class="r-actions">
+      <button class="btn ghosty small" id="againBtn">再测一次</button>
+      <button class="btn small" id="shareBtn">复制结果</button>
+    </div>
+  </section>
 
 </div>
-
-<footer class="site">
-  <div class="inner">
-    <div>© 2026 内心 Docs · 一个模仿 GitHub Docs 的心理测试页面</div>
-    <div style="display:flex;gap:20px">
-      <a href="#title-h1">回到顶部</a>
-      <a href="#start">重新测试</a>
-    </div>
-  </div>
-</footer>
+<div class="toast" id="toast"></div>
 
 <script>
-/* =========================================================
-   题库：28 题，每题 4 选项，选项分别记 E/I、S/N、T/F、J/P
-   为了平衡，每个维度 7 题（E/I 7 题、S/N 7 题、T/F 7 题、J/P 7 题）
-   ========================================================= */
-const QUESTIONS = [
-  /* --- E / I 能量来源（7题）--- */
-  { dim:'EI', q:'放学回家、门一关的那一刻，你心里想的是：', opts:[
-    { t:'太好了，终于没人了，我要自己待着', v:'I' },
-    { t:'有点空，想给同学打个电话', v:'E' },
-    { t:'先翻冰箱，再想想谁在楼下', v:'E' },
-    { t:'把门反锁，偷偷开始自己的小项目', v:'I' }
-  ]},
-  { dim:'EI', q:'家里来了一屋子客人，你会：', opts:[
-    { t:'被点名表演节目，硬着头皮上', v:'E' },
-    { t:'在人群里窜来窜去，给每个人讲笑话', v:'E' },
-    { t:'躲在房间假装写作业', v:'I' },
-    { t:'坐角落观察大人，听得津津有味', v:'I' }
-  ]},
-  { dim:'EI', q:'一个新玩具，你更愿意：', opts:[
-    { t:'马上拿出去跟别人一起玩', v:'E' },
-    { t:'一个人在房间里研究个透', v:'I' },
-    { t:'先自己试，再叫人来炫耀', v:'E' },
-    { t:'先藏起来，等没人时再拿出来', v:'I' }
-  ]},
-  { dim:'EI', q:'被老师批评之后，你的第一反应是：', opts:[
-    { t:'立刻找好朋友吐槽，说个痛快', v:'E' },
-    { t:'一个人跑到操场角落坐着', v:'I' },
-    { t:'装作没事，回家路上一直想', v:'I' },
-    { t:'当场就想解释、想辩白', v:'E' }
-  ]},
-  { dim:'EI', q:'如果要度过一个完美的下午，你会选：', opts:[
-    { t:'和一群人玩到天黑，满头是汗', v:'E' },
-    { t:'在家里搭一个只属于自己的小窝', v:'I' },
-    { t:'去楼下找人，谁在就跟谁玩', v:'E' },
-    { t:'借一本书，窝着看到吃饭', v:'I' }
-  ]},
-  { dim:'EI', q:'你的“快乐”，通常需要被谁看见？', opts:[
-    { t:'最好有人一起笑，快乐会翻倍', v:'E' },
-    { t:'不需要别人，我自己知道就够了', v:'I' },
-    { t:'想让最重要的一两个人知道', v:'I' },
-    { t:'想让所有人都知道', v:'E' }
-  ]},
-  { dim:'EI', q:'在最热闹的饭桌上，你通常是：', opts:[
-    { t:'说话最多、最会带动气氛的那个', v:'E' },
-    { t:'被大人们逗着讲话的那个', v:'E' },
-    { t:'默默吃菜、偶尔插一句的那个', v:'I' },
-    { t:'吃完就溜去别处的那个', v:'I' }
-  ]},
-
-  /* --- S / N 信息接收（7题）--- */
-  { dim:'SN', q:'拿到一个新的乐高盒子，你先做什么？', opts:[
-    { t:'看图纸，按步骤一步步来', v:'S' },
-    { t:'不听图纸，先凭感觉拼个东西', v:'N' },
-    { t:'把所有零件倒出来，按颜色分好', v:'S' },
-    { t:'脑内先幻想它建成的样子', v:'N' }
-  ]},
-  { dim:'SN', q:'晚上躺在床上，你脑子里是：', opts:[
-    { t:'今天发生的具体的事，谁说了什么', v:'S' },
-    { t:'假如我有一只会飞的猫会怎样', v:'N' },
-    { t:'明天的安排，先干什么后干什么', v:'S' },
-    { t:'一个没有结局的故事，我一直在编', v:'N' }
-  ]},
-  { dim:'SN', q:'一盆花放在窗台上，你注意到的是：', opts:[
-    { t:'花瓣有几片、土是不是干了', v:'S' },
-    { t:'它像一个什么小生命，有没有心事', v:'N' },
-    { t:'它在光里投下的影子什么样', v:'S' },
-    { t:'如果它会说话，它会说什么', v:'N' }
-  ]},
-  { dim:'SN', q:'你更喜欢的童话是：', opts:[
-    { t:'细节很真实，像真的发生过', v:'S' },
-    { t:'奇怪、跳跃、有点说不通的', v:'N' },
-    { t:'好人坏人分得清楚的', v:'S' },
-    { t:'结尾留着没讲完的', v:'N' }
-  ]},
-  { dim:'SN', q:'大人问你“今天学了什么”，你会：', opts:[
-    { t:'一条条讲，学了什么、做了什么', v:'S' },
-    { t:'讲一个自己联想出来的故事', v:'N' },
-    { t:'说“就那样”，然后跑开', v:'S' },
-    { t:'讲着讲着就跑题，讲起别的', v:'N' }
-  ]},
-  { dim:'SN', q:'画一幅画时，你更在意：', opts:[
-    { t:'颜色涂得干不干净、像不像', v:'S' },
-    { t:'画面里藏了什么别人看不出来的东西', v:'N' },
-    { t:'线条有没有出格', v:'S' },
-    { t:'这一整张画在讲什么故事', v:'N' }
-  ]},
-  { dim:'SN', q:'别人说话时，你更容易记住：', opts:[
-    { t:'他说的原话和具体数字', v:'S' },
-    { t:'他为什么会这么说', v:'N' },
-    { t:'当时的场景、气味和声音', v:'S' },
-    { t:'他话里没说出来的那部分', v:'N' }
-  ]},
-
-  /* --- T / F 决策方式（7题）--- */
-  { dim:'TF', q:'两个好朋友吵架了，你会：', opts:[
-    { t:'听两边讲完，判断谁更在理', v:'T' },
-    { t:'先站在哭得厉害的那个身边', v:'F' },
-    { t:'想办法让他们都别生气', v:'F' },
-    { t:'说“这事本来就该这样”，然后走开', v:'T' }
-  ]},
-  { dim:'TF', q:'分蛋糕的时候，你想要更大的一块，你会：', opts:[
-    { t:'讲道理：我比弟弟大，我吃得多', v:'T' },
-    { t:'看看别人，忍住了没说', v:'F' },
-    { t:'偷偷把大的那块挪过来', v:'T' },
-    { t:'主动把大的给别人，自己有点委屈', v:'F' }
-  ]},
-  { dim:'TF', q:'被冤枉拿了别人的东西，你最难受的是：', opts:[
-    { t:'事实被搞错了，这不公平', v:'T' },
-    { t:'他们居然这么看我', v:'F' },
-    { t:'我要证明清楚，一条一条说', v:'T' },
-    { t:'我想哭，但我得先忍住', v:'F' }
-  ]},
-  { dim:'TF', q:'看电影时，你会为了角色哭吗？', opts:[
-    { t:'很少，我会想这剧情逻辑不通', v:'T' },
-    { t:'会，而且哭得比谁都凶', v:'F' },
-    { t:'不会哭，但心里堵得慌', v:'F' },
-    { t:'会注意哪里拍得好、哪里假', v:'T' }
-  ]},
-  { dim:'TF', q:'如果要选一个当班长，你会投给：', opts:[
-    { t:'定规矩清楚、做事有条理的人', v:'T' },
-    { t:'对大家都很好、会照顾人的人', v:'F' },
-    { t:'说话算数、能解决问题的人', v:'T' },
-    { t:'温柔、愿意听人说话的人', v:'F' }
-  ]},
-  { dim:'TF', q:'一只蚂蚁被你踩死了，你会：', opts:[
-    { t:'没什么，它是虫子', v:'T' },
-    { t:'有点难过，会把它埋一下', v:'F' },
-    { t:'想想它本来要去哪儿', v:'F' },
-    { t:'踩完就走，没多想', v:'T' }
-  ]},
-  { dim:'TF', q:'别人夸你时，你心里想的是：', opts:[
-    { t:'他说的对不对？我确实做得好', v:'T' },
-    { t:'好开心，想被多夸几句', v:'F' },
-    { t:'他是不是有事求我', v:'T' },
-    { t:'有点不好意思，但很暖', v:'F' }
-  ]},
-
-  /* --- J / P 生活节奏（7题）--- */
-  { dim:'JP', q:'周末早上醒来，你希望：', opts:[
-    { t:'今天要做什么，昨天已经想好了', v:'J' },
-    { t:'先躺着，看心情决定', v:'P' },
-    { t:'把作业先写完，再玩', v:'J' },
-    { t:'玩到哪算哪，作业晚上再说', v:'P' }
-  ]},
-  { dim:'JP', q:'出门前，你的书包：', opts:[
-    { t:'前一天晚上就收好了', v:'J' },
-    { t:'到门口才开始往里塞', v:'P' },
-    { t:'有固定位置，一样都不能少', v:'J' },
-    { t:'里面什么都可能翻出来', v:'P' }
-  ]},
-  { dim:'JP', q:'玩拼图的时候，你：', opts:[
-    { t:'先拼边，再一块块推进', v:'J' },
-    { t:'随手拿一块试一块', v:'P' },
-    { t:'拼不完就不睡觉', v:'J' },
-    { t:'拼一半就跑去做别的了', v:'P' }
-  ]},
-  { dim:'JP', q:'要去一个没去过的地方玩，你会：', opts:[
-    { t:'提前问清楚路线和时间', v:'J' },
-    { t:'到了再说，走丢也算冒险', v:'P' },
-    { t:'希望有人安排好一切', v:'J' },
-    { t:'希望中间能有意外发生', v:'P' }
-  ]},
-  { dim:'JP', q:'一件事被突然改变计划，你会：', opts:[
-    { t:'很不爽，我讨厌变来变去', v:'J' },
-    { t:'挺好啊，正好换个花样', v:'P' },
-    { t:'嘴上说没事，心里有点堵', v:'J' },
-    { t:'马上开始想新的可能性', v:'P' }
-  ]},
-  { dim:'JP', q:'你的桌面（小时候的书桌）通常是：', opts:[
-    { t:'东西按位置摆好', v:'J' },
-    { t:'堆得乱七八糟但我知道在哪', v:'P' },
-    { t:'妈妈整理完我反而不习惯', v:'P' },
-    { t:'每样东西都有它的归属', v:'J' }
-  ]},
-  { dim:'JP', q:'写作业时，你更像：', opts:[
-    { t:'先列清单，一项项划掉', v:'J' },
-    { t:'哪科有意思先写哪科', v:'P' },
-    { t:'不到最后一刻不动笔', v:'P' },
-    { t:'提前几天就写完了', v:'J' }
-  ]}
+/* ============ 题库：A=O 秩序力  B=I 洞察力  C=C 连接力  D=M 创造力 ============ */
+const GROUPS=['上班日常','烧心的情况','同事间的"故事"','自我评价环节'];
+const QUESTIONS=[
+ {g:0,q:'早上 8:59 匆匆打卡，9:00 要开会。你要做的第一件事是——',o:[
+  ['坐上工位，会议链接早就挂在收藏夹里','O'],
+  ['先扫一眼小群，看谁还没到','I'],
+  ['和同事说一声"我打份资料，可能晚两分钟"','C'],
+  ['不开摄像头，边听边做其他工作','M']]},
+ {g:0,q:'收到一份表格/文档，第一眼你会看——',o:[
+  ['格式和数据是否正确，有无语病','O'],
+  ['方案的逻辑是否可行','I'],
+  ['写方案的同事怀着什么样的心情','C'],
+  ['要是我来重做这个，会做成什么样','M']]},
+ {g:0,q:'朋友发来一句"在吗"，你心里第一反应是——',o:[
+  ['难道要让我帮什么忙','O'],
+  ['等 ta 发完','I'],
+  ['ta 遇到了什么紧急情况','C'],
+  ['我先发个表情包（直接耍起）','M']]},
+ {g:0,q:'刷到一条爆火的 AI 短剧，你会想——',o:[
+  ['这短剧不烧心，前三秒抓人、中间给爽点','O'],
+  ['这个选题精准打中了哪一群人','I'],
+  ['评论区的人都在共情什么','C'],
+  ['我能不能做个更好的版本','M']]},
+ {g:1,q:'下班前被领导打回，要改第三版，你的第一反应是——',o:[
+  ['自己复盘一下再改','O'],
+  ['问领导"为什么""改什么"，搞清楚再动手','I'],
+  ['先安抚一下领导情绪','C'],
+  ['溜之大吉，工作明天见','M']]},
+ {g:1,q:'项目卡住了，组员们在群里踢皮球。你作为组长会——',o:[
+  ['直接@全体成员：A 负责 X、B 负责 Y，今晚 8 点对一次','O'],
+  ['弱弱地问一句：我们是不是从一开始就搞错了目标……','I'],
+  ['私聊群里吵最凶的人，把 ta 情绪稳定好','C'],
+  ['把方案自己先做一版扔进去，让大家有个东西可吵','M']]},
+ {g:1,q:'最能让你感觉"这班没白上"的瞬间是——',o:[
+  ['工作在你手中顺利完成','O'],
+  ['工作让你 get 新技能','I'],
+  ['领导跟你说"还好有你在"','C'],
+  ['发薪日到账瞬间','M']]},
+ {g:1,q:'你最受不了的职场情景是——',o:[
+  ['饭都没吃，开会两小时，结论是"下次再议"','O'],
+  ['领导方向错了，没人敢说','I'],
+  ['组里有阴阳人，气氛搞得很难受','C'],
+  ['一堆流程卡着等审批，什么都做不出来','M']]},
+ {g:2,q:'同事被领导当众批了一顿，散会后你会——',o:[
+  ['帮 ta 把被否的东西重做','O'],
+  ['和稀泥：领导肯定不是这个意思，没事的','I'],
+  ['什么都不说，先陪 ta 抽根烟 / 喝杯奶茶','C'],
+  ['笑幻 ta（感觉会被 ta 打死）','M']]},
+ {g:2,q:'同事们给你的封号是——',o:[
+  ['靠谱的家长','O'],
+  ['眼光毒辣，说话犀利','I'],
+  ['老好人','C'],
+  ['nb / 乐子人','M']]},
+ {g:2,q:'群里突然冷场了，你会——',o:[
+  ['把话题拽回正事','O'],
+  ['把刚才没人接的那句话挑出来，重新问一遍','I'],
+  ['发个表情包，缓和气氛','C'],
+  ['甩一个新话题或一张图，重新起头','M']]},
+ {g:2,q:'你希望在团队里真正的作用是——',o:[
+  ['做团队的计划表，保证进度稳稳推进','O'],
+  ['把握团队的大方向','I'],
+  ['让所有人开心','C'],
+  ['让创新的想法落地，做一些有趣的新东西','M']]},
+ {g:3,q:'周末过完，你觉得"这周回血了"，通常是因为——',o:[
+  ['房间收拾干净了，待办清空了','O'],
+  ['看完了想看的书 / 想通了一件心事','I'],
+  ['跟朋友聊了很久，聊开了','C'],
+  ['让想法和尝试落地了','M']]},
+ {g:3,q:'最让你破防的是——',o:[
+  ['计划全被打乱，一切都要重来','O'],
+  ['周围没人愿意动脑，只要一个答案','I'],
+  ['一群不熟的人，还要一直陪着笑','C'],
+  ['天天干重复的活，一点新东西都没有','M']]},
+ {g:3,q:'别人说你"太——"的时候，大概率是哪个词？',o:[
+  ['太较真','O'],
+  ['想太多','I'],
+  ['太敏感','C'],
+  ['太不切实际','M']]},
+ {g:3,q:'如果周一不用上班、也没人管你，你大概会——',o:[
+  ['收拾家里，在整洁的沙发上看电视','O'],
+  ['因为想知道野外的鸟怎么磨嘴，搜了一下午','I'],
+  ['约老朋友聊天喝下午茶','C'],
+  ['做一件痛快的事，出去玩个够（又是大耍起哈哈哈）','M']]}
 ];
 
-/* =========================================================
-   Q 版卡通形象（纯 SVG，16 款，按网络中流传的 MBTI 人设设计）
-   ========================================================= */
-const SVG_HEAD = 'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"';
 
-/* 通用零件 */
-const face = (eyes, mouth, extra='') => `
-  <ellipse cx="78" cy="112" rx="5" ry="6" fill="#3a2b33"/>
-  <ellipse cx="122" cy="112" rx="5" ry="6" fill="#3a2b33"/>
-  <circle cx="79.6" cy="110" r="1.9" fill="#fff"/>
-  <circle cx="123.6" cy="110" r="1.9" fill="#fff"/>
-  <ellipse cx="64" cy="124" rx="8" ry="4.6" fill="#ff9db4" opacity=".55"/>
-  <ellipse cx="136" cy="124" rx="8" ry="4.6" fill="#ff9db4" opacity=".55"/>
-  ${extra}
-  ${mouth}`;
-const MOUTH = {
-  smile:'<path d="M92 126 q8 7 16 0" stroke="#3a2b33" stroke-width="2.6" fill="none" stroke-linecap="round"/>',
-  open:'<ellipse cx="100" cy="128" rx="6" ry="6.5" fill="#e0637f"/><ellipse cx="100" cy="131" rx="3.4" ry="2.6" fill="#ff9db4"/>',
-  flat:'<path d="M93 128 h14" stroke="#3a2b33" stroke-width="2.6" stroke-linecap="round"/>',
-  wow:'<ellipse cx="100" cy="128" rx="4.6" ry="5.4" fill="#3a2b33"/>',
-  smirk:'<path d="M92 128 q9 6 16 -2" stroke="#3a2b33" stroke-width="2.6" fill="none" stroke-linecap="round"/>',
-  small:'<path d="M96 127 q4 4 8 0" stroke="#3a2b33" stroke-width="2.6" fill="none" stroke-linecap="round"/>'
-};
-const blush = (c='#ff9db4') => `
-  <ellipse cx="64" cy="124" rx="8" ry="4.6" fill="${c}" opacity=".55"/>
-  <ellipse cx="136" cy="124" rx="8" ry="4.6" fill="${c}" opacity=".55"/>`;
-const body = (cloth, extra='') => `
-  <path d="M64 152 q36 -12 72 0 l8 30 q-44 10 -88 0 z" fill="${cloth}"/>
-  <circle cx="64" cy="168" r="9" fill="${cloth}"/>
-  <circle cx="136" cy="168" r="9" fill="${cloth}"/>
-  ${extra}`;
-const neck = '<rect x="92" y="138" width="16" height="12" rx="5" fill="#ffd9c2"/>';
-
-const MASCOTS = {
-  /* ---- 分析家 NF/NT ---- */
-  INTJ: () => `<svg ${SVG_HEAD}>
-    <defs><linearGradient id="g-intj" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5c4b8a"/><stop offset="1" stop-color="#8b7bd8"/></linearGradient></defs>
-    ${body('url(#g-intj)')}${neck}
-    <path d="M60 108 q0 -52 40 -52 q40 0 40 52 q-6 -18 -18 -26 q-10 10 -22 8 q-16 -3 -22 6 q-10 6 -18 12z" fill="#2f2942"/>
-    <path d="M56 104 q-4 -46 44 -46 q48 0 44 46 q-4 -20 -18 -30 q-14 14 -26 10 q-14 -3 -26 8 q-14 8 -18 12z" fill="#3b3355"/>
-    <ellipse cx="100" cy="112" rx="42" ry="40" fill="#ffd9c2"/>
-    <path d="M58 96 q10 -26 42 -26 q32 0 42 26 q-12 -12 -22 -8 q-12 5 -20 -1 q-12 -8 -22 1 q-12 6 -20 8z" fill="#3b3355"/>
-    ${face(face, MOUTH.flat)}
-    <g stroke="#3a2b33" stroke-width="2.2" fill="none"><circle cx="78" cy="112" r="13" stroke="#5b4b7a"/><circle cx="122" cy="112" r="13" stroke="#5b4b7a"/><path d="M91 112 h18"/></g>
-    ${blush('#e9a0b8')}
-    <path d="M140 156 l16 -34 l10 10 z" fill="#ffd166" stroke="#e0a92e" stroke-width="2" stroke-linejoin="round"/>
-    <text x="152" y="140" font-size="11" fill="#7a5a00" font-family="monospace" transform="rotate(-58 152 140)">1</text>
-    <rect x="46" y="150" width="26" height="18" rx="3" fill="#fff" stroke="#c9b8a8" stroke-width="2"/>
-    <path d="M50 156 h18 M50 161 h12" stroke="#b9a89a" stroke-width="1.6"/>
-    ${body('url(#g-intj)', '<path d="M100 158 v22" stroke="#fff" stroke-width="2.4" stroke-dasharray="3 3"/>')}
-  </svg>`,
-
-  INTP: () => `<svg ${SVG_HEAD}>
-    ${body('#8ecae6')}${neck}
-    <ellipse cx="100" cy="112" rx="43" ry="41" fill="#ffd9c2"/>
-    <path d="M57 100 q4 -40 43 -40 q39 0 43 40 q-14 -12 -30 -8 q-16 4 -28 -2 q-14 -5 -28 10z" fill="#4a5a6a"/>
-    <path d="M62 74 q14 -18 36 -18 q-10 8 -12 18 q-12 4 -24 0z" fill="#5b6b7b" opacity=".85"/>
-    <path d="M60 92 q6 -22 40 -22 q34 0 40 22 q-14 -6 -24 -2 q-14 4 -26 0 q-14 -4 -30 2z" fill="#5b6b7b"/>
-    ${face()}
-    ${MOUTH.wow}
-    <g stroke="#3a2b33" stroke-width="2.2" fill="rgba(255,255,255,.35)">
-      <rect x="60" y="103" width="34" height="19" rx="6"/>
-      <rect x="106" y="103" width="34" height="19" rx="6"/>
-      <path d="M94 111 h12" stroke-width="2.4"/>
-      <path d="M60 108 l-9 -5" stroke-width="2.2"/>
-      <path d="M140 108 l9 -5" stroke-width="2.2"/>
-    </g>
-    <circle cx="70" cy="106" r="3" fill="#fff" opacity=".65"/>
-    <circle cx="116" cy="106" r="3" fill="#fff" opacity=".65"/>
-    <path d="M132 158 l16 -26" stroke="#3a2b33" stroke-width="3.4" stroke-linecap="round"/>
-    <circle cx="152" cy="126" r="9" fill="rgba(124,92,255,.2)" stroke="#7c5cff" stroke-width="3.4"/>
-    <circle cx="152" cy="126" r="4" fill="#c9b6ff"/>
-  </svg>`,
-
-  ENTJ: () => `<svg ${SVG_HEAD}>
-    <path d="M64 152 q36 -12 72 0 l8 30 q-44 10 -88 0 z" fill="#3a4a6b"/>
-    <circle cx="64" cy="168" r="9" fill="#3a4a6b"/><circle cx="136" cy="168" r="9" fill="#3a4a6b"/>
-    <path d="M74 156 l26 12 l26 -12 l-4 8 l-22 10 l-22 -10z" fill="#fff" opacity=".85"/>
-    <path d="M100 168 l-4 8 l4 6 l4 -6z" fill="#ffd166"/>
-    ${neck}
-    <ellipse cx="100" cy="112" rx="43" ry="41" fill="#ffd9c2"/>
-    <path d="M57 100 q2 -42 43 -42 q41 0 43 42 q-12 -16 -30 -12 q-8 8 -18 6 q-14 -3 -22 3 q-10 1 -16 3z" fill="#2b2a36"/>
-    <path d="M62 74 q16 -16 38 -14 q-12 6 -16 16 q-12 4 -22 -2z" fill="#3b3a4a" opacity=".9"/>
-    ${face()}
-    <path d="M66 96 q12 -7 24 -2" stroke="#3a2b33" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <path d="M110 94 q12 -6 24 2" stroke="#3a2b33" stroke-width="3" fill="none" stroke-linecap="round"/>
-    ${MOUTH.smirk}
-    <path d="M148 158 v-34" stroke="#3a2b33" stroke-width="3.4" stroke-linecap="round"/>
-    <path d="M148 124 l16 6 l-16 6 z" fill="#ff7a59"/>
-    <path d="M40 152 l12 -6 M40 152 l8 10" stroke="#ffd166" stroke-width="3" stroke-linecap="round"/>
-  </svg>`,
-
-  ENTP: () => `<svg ${SVG_HEAD}>
-    ${body('#ffb703')}${neck}
-    <ellipse cx="100" cy="112" rx="43" ry="41" fill="#ffd9c2"/>
-    <path d="M55 100 q6 -42 45 -42 q39 0 45 42 q-8 -16 -22 -20 q-4 14 -18 12 q-14 -2 -24 4 q-16 4 -26 4z" fill="#7a4a2b"/>
-    <path d="M60 92 q10 -30 40 -30 q30 0 40 30 q-10 -10 -22 -6 q-14 5 -26 -2 q-14 -6 -32 8z" fill="#8a5632"/>
-    ${face()}
-    <path d="M68 96 q10 -6 20 -1" stroke="#3a2b33" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <path d="M112 95 q10 -5 20 1" stroke="#3a2b33" stroke-width="3" fill="none" stroke-linecap="round"/>
-    ${MOUTH.open}
-    <path d="M134 120 q10 0 12 8 q-9 3 -13 -3z" fill="#ff7a8a" opacity=".75"/>
-    <g transform="rotate(20 152 150)">
-      <rect x="140" y="142" width="26" height="14" rx="7" fill="#fff" stroke="#3a2b33" stroke-width="2.2"/>
-      <path d="M146 149 h5 M158 149 h4" stroke="#ffd166" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M166 145 q6 4 0 8" stroke="#3a2b33" stroke-width="2" fill="none"/>
-    </g>
-    <text x="34" y="82" font-size="20" fill="#ff7a59" font-weight="bold">?</text>
-    <text x="152" y="88" font-size="16" fill="#a98bff" font-weight="bold">!</text>
-  </svg>`,
-
-  INFJ: () => `<svg ${SVG_HEAD}>
-    <defs><linearGradient id="g-infj" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f6b63"/><stop offset="1" stop-color="#6fae9f"/></linearGradient></defs>
-    ${body('url(#g-infj)')}${neck}
-    <path d="M56 106 q0 -56 44 -56 q44 0 44 56 q0 26 -10 40 q-8 -20 4 -40 q-12 12 -38 12 q-26 0 -38 -12 q12 20 4 40 q-10 -14 -10 -40z" fill="#2f2a3d"/>
-    <ellipse cx="100" cy="112" rx="41" ry="39" fill="#ffd9c2"/>
-    <path d="M59 100 q6 -34 41 -34 q35 0 41 34 q-12 -16 -26 -10 q-16 7 -30 0 q-14 -7 -26 10z" fill="#2f2a3d"/>
-    ${face()}
-    ${MOUTH.small}
-    <path d="M120 130 q10 6 6 14 q-8 -2 -10 -10z" fill="#c9b6ff" opacity=".9"/>
-    <text x="36" y="76" font-size="17" fill="#ffd166">★</text>
-    <text x="150" y="70" font-size="13" fill="#a98bff">✦</text>
-    <text x="44" y="150" font-size="11" fill="#ffd166">✦</text>
-  </svg>`,
-
-  INFP: () => `<svg ${SVG_HEAD}>
-    ${body('#b39ddb')}${neck}
-    <path d="M52 116 q-2 -60 48 -60 q50 0 48 60 q-2 34 -14 46 q0 -40 4 -56 q-16 14 -38 14 q-22 0 -38 -14 q4 16 4 56 q-12 -12 -14 -46z" fill="#8d6e63"/>
-    <ellipse cx="100" cy="112" rx="40" ry="38" fill="#ffd9c2"/>
-    <path d="M60 100 q6 -32 40 -32 q34 0 40 32 q-12 -14 -26 -8 q-16 6 -28 0 q-14 -6 -26 8z" fill="#8d6e63"/>
-    ${face()}
-    ${MOUTH.small}
-    <path d="M62 74 q6 -14 14 -8 q-2 10 -8 14z" fill="#ffd166"/><path d="M62 74 q8 2 14 6" stroke="#fff" stroke-width="2" fill="none"/>
-    <path d="M56 122 q-6 8 2 12" stroke="#8d6e63" stroke-width="6" fill="none" stroke-linecap="round"/>
-    <path d="M144 118 q10 10 4 22 q-6 -8 -8 -14z" fill="#7ec8a9"/>
-    <text x="146" y="72" font-size="14" fill="#ff8fb1">♪</text>
-    <text x="34" y="96" font-size="12" fill="#a98bff">♫</text>
-  </svg>`,
-
-  ENFJ: () => `<svg ${SVG_HEAD}>
-    ${body('#ff8fb1')}${neck}
-    <path d="M54 110 q0 -56 46 -56 q46 0 46 56 q0 22 -8 34 q-6 -22 2 -40 q-16 12 -40 12 q-24 0 -40 -12 q8 18 2 40 q-8 -12 -8 -34z" fill="#e7a04d"/>
-    <ellipse cx="100" cy="112" rx="41" ry="39" fill="#ffd9c2"/>
-    <path d="M59 100 q8 -34 41 -34 q33 0 41 34 q-14 -16 -28 -8 q-14 8 -26 0 q-12 -8 -28 8z" fill="#e7a04d"/>
-    ${face()}
-    ${MOUTH.open}
-    <path d="M62 66 q10 -12 18 -4 q-4 10 -10 12z" fill="#7ec8a9" opacity=".85"/>
-    <path d="M78 68 q8 -10 14 -2 q-3 8 -8 10z" fill="#7ec8a9" opacity=".7"/>
-    <g transform="rotate(-10 150 150)"><path d="M144 148 q10 -12 18 -2 q-6 12 -18 2z" fill="#ff5d8f"/>
-    <path d="M144 148 q8 4 16 0" stroke="#fff" stroke-width="1.6" fill="none"/></g>
-    <text x="34" y="150" font-size="15" fill="#ff8fb1">❤</text>
-  </svg>`,
-
-  /* ---- 外交家/守护者 SP/SJ ---- */
-  ISTJ: () => `<svg ${SVG_HEAD}>
-    ${body('#4a6fa5')}${neck}
-    <ellipse cx="100" cy="112" rx="43" ry="41" fill="#ffd9c2"/>
-    <path d="M57 102 q4 -42 43 -42 q39 0 43 42 q-14 -12 -30 -8 q-16 4 -28 -2 q-14 -6 -28 10z" fill="#2b2a36"/>
-    <path d="M100 60 l-3 44 M74 66 q22 -8 26 4" stroke="#2b2a36" stroke-width="3" fill="none" stroke-linecap="round"/>
-    ${face()}
-    ${MOUTH.flat}
-    <rect x="74" y="104" width="20" height="16" rx="5" fill="none" stroke="#3a2b33" stroke-width="2.2"/>
-    <rect x="108" y="104" width="20" height="16" rx="5" fill="none" stroke="#3a2b33" stroke-width="2.2"/>
-    <path d="M94 111 h14" stroke="#3a2b33" stroke-width="2.2"/>
-    <path d="M86 152 v22" stroke="#3a2b33" stroke-width="3"/>
-    <circle cx="86" cy="152" r="4" fill="#ffd166"/>
-    <g transform="rotate(6 150 150)">
-      <rect x="138" y="138" width="26" height="32" rx="4" fill="#fff" stroke="#e0c9b0" stroke-width="2"/>
-      <rect x="138" y="138" width="26" height="10" rx="4" fill="#4a6fa5"/>
-      <path d="M144 155 h14 M144 161 h14 M144 167 h9" stroke="#c9b8a8" stroke-width="1.8"/>
-      <path d="M150 150 v6" stroke="#4a6fa5" stroke-width="2"/>
-      <path d="M145 157 l3 3 l6 -7" stroke="#3aa76d" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-    </g>
-  </svg>`,
-
-  ISFJ: () => `<svg ${SVG_HEAD}>
-    ${body('#f4a7bb')}${neck}
-    <ellipse cx="100" cy="112" rx="42" ry="40" fill="#ffd9c2"/>
-    <path d="M56 106 q2 -50 44 -50 q42 0 44 50 q-12 -18 -30 -14 q-14 4 -28 0 q-18 -4 -30 14z" fill="#5a4a3f"/>
-    <path d="M60 96 q10 -30 40 -30 q30 0 40 30 q-14 -10 -28 -4 q-12 5 -24 0 q-14 -6 -28 4z" fill="#6b584a"/>
-    ${face()}
-    ${MOUTH.smile}
-    <path d="M56 118 q-8 14 4 20" stroke="#5a4a3f" stroke-width="7" fill="none" stroke-linecap="round"/>
-    <path d="M144 118 q8 14 -4 20" stroke="#5a4a3f" stroke-width="7" fill="none" stroke-linecap="round"/>
-    <g transform="rotate(-8 148 148)"><rect x="136" y="140" width="26" height="20" rx="6" fill="#fff" stroke="#e8c9d0" stroke-width="2"/>
-    <path d="M149 140 v20" stroke="#e8c9d0" stroke-width="2"/><path d="M149 146 h-6 M149 152 h-6" stroke="#ffb3c9" stroke-width="2"/></g>
-    <path d="M34 84 q6 -8 12 0 q-6 8 -12 0z" fill="#ffd166"/>
-  </svg>`,
-
-  ISTP: () => `<svg ${SVG_HEAD}>
-    ${body('#5d6b73')}${neck}
-    <ellipse cx="100" cy="112" rx="43" ry="41" fill="#ffd9c2"/>
-    <path d="M56 104 q6 -44 44 -44 q38 0 44 44 q-10 -14 -24 -16 q-6 10 -16 8 q-14 -3 -22 2 q-14 2 -26 6z" fill="#3d4650"/>
-    <path d="M104 62 q22 6 26 32 q-10 -20 -26 -26z" fill="#3d4650"/>
-    ${face()}
-    ${MOUTH.flat}
-    <!-- 扳手 -->
-    <g transform="rotate(-28 152 150)">
-      <rect x="142" y="146" width="24" height="7" rx="3.5" fill="#cfd8dc" stroke="#78909c" stroke-width="1.6"/>
-      <path d="M164 142 q8 0 8 7 q0 7 -8 7 l2 -7z" fill="#cfd8dc" stroke="#78909c" stroke-width="1.6" stroke-linejoin="round"/>
-      <path d="M142 149.5 h-8" stroke="#c0392b" stroke-width="7" stroke-linecap="round"/>
-    </g>
-    <circle cx="52" cy="158" r="6" fill="none" stroke="#3a2b33" stroke-width="2.2"/>
-    <circle cx="52" cy="158" r="2" fill="#3a2b33"/>
-    <path d="M52 152 v-3 M52 167 v3 M46 158 h-3 M61 158 h3" stroke="#3a2b33" stroke-width="2" stroke-linecap="round"/>
-  </svg>`,
-
-  ISFP: () => `<svg ${SVG_HEAD}>
-    ${body('#ffd166')}${neck}
-    <path d="M54 112 q0 -58 46 -58 q46 0 46 58 q0 20 -6 34 q-4 -24 2 -42 q-16 12 -42 12 q-26 0 -42 -12 q6 18 2 42 q-6 -14 -6 -34z" fill="#7ec8a9"/>
-    <ellipse cx="100" cy="112" rx="40" ry="38" fill="#ffd9c2"/>
-    <path d="M60 100 q8 -32 40 -32 q32 0 40 32 q-12 -12 -26 -8 q-16 6 -28 0 q-12 -6 -26 8z" fill="#7ec8a9"/>
-    ${face()}
-    ${MOUTH.small}
-    <path d="M58 70 q8 -12 16 -4 q-4 10 -10 12z" fill="#ff8fb1"/>
-    <g transform="rotate(-20 152 146)">
-      <rect x="144" y="140" width="20" height="7" rx="3.5" fill="#ff8fb1"/>
-      <rect x="160" y="140" width="8" height="7" rx="2" fill="#a98bff"/>
-      <path d="M164 140 l6 -6 l-4 6z" fill="#3a2b33"/>
-      <rect x="140" y="152" width="24" height="8" rx="4" fill="#7ec8a9"/>
-      <path d="M164 156 l8 0" stroke="#3a2b33" stroke-width="3" stroke-linecap="round"/>
-    </g>
-    <text x="32" y="146" font-size="14" fill="#ffd166">✿</text>
-    <path d="M40 118 q6 -12 12 0 q-6 6 -12 0z" fill="#a98bff" opacity=".7"/>
-  </svg>`,
-
-  ESTP: () => `<svg ${SVG_HEAD}>
-    ${body('#ff7a59')}${neck}
-    <ellipse cx="100" cy="112" rx="43" ry="41" fill="#ffd9c2"/>
-    <path d="M55 100 q8 -40 45 -40 q37 0 45 40 q-12 -12 -28 -10 q-4 12 -18 10 q-14 -2 -22 4 q-12 2 -22 -4z" fill="#5b3a2a"/>
-    ${face()}
-    <path d="M64 94 q12 -8 24 0" stroke="#3a2b33" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <path d="M112 94 q12 -8 24 0" stroke="#3a2b33" stroke-width="3" fill="none" stroke-linecap="round"/>
-    ${MOUTH.open}
-    <path d="M84 132 q16 10 32 0" stroke="#fff" stroke-width="2.6" fill="none" opacity=".8"/>
-    <g transform="rotate(-24 152 152)">
-      <ellipse cx="152" cy="152" rx="22" ry="11" fill="#c0392b" stroke="#3a2b33" stroke-width="2.4"/>
-      <ellipse cx="152" cy="152" rx="6" ry="11" fill="#fff" opacity=".55"/>
-      <path d="M152 141 v22" stroke="#fff" stroke-width="1.8"/>
-    </g>
-    <path d="M34 132 l14 4 l-4 11 l-11 -4z" fill="#ffd166"/>
-    <text x="26" y="86" font-size="16" fill="#ff7a59">✧</text>
-  </svg>`,
-
-  ESFP: () => `<svg ${SVG_HEAD}>
-    ${body('#ff5d8f')}${neck}
-    <path d="M52 114 q-2 -62 48 -62 q50 0 48 62 q-2 22 -10 36 q-2 -30 4 -50 q-16 14 -42 14 q-26 0 -42 -14 q6 20 4 50 q-8 -14 -10 -36z" fill="#ffd166"/>
-    <ellipse cx="100" cy="112" rx="40" ry="38" fill="#ffd9c2"/>
-    <path d="M60 100 q8 -34 40 -34 q32 0 40 34 q-12 -14 -26 -8 q-16 6 -28 0 q-14 -6 -26 8z" fill="#ffd166"/>
-    ${face()}
-    ${MOUTH.open}
-    <circle cx="100" cy="54" r="8" fill="#ffd166" stroke="#e0a92e" stroke-width="2"/>
-    <path d="M94 54 h12 M100 48 v12" stroke="#fff" stroke-width="2"/>
-    <g transform="rotate(16 152 148)">
-      <rect x="144" y="140" width="18" height="8" rx="4" fill="#a98bff"/>
-      <path d="M150 148 l6 0" stroke="#7a5cf0" stroke-width="2.6"/>
-      <circle cx="150" cy="152" r="5" fill="#a98bff"/>
-    </g>
-    <text x="32" y="78" font-size="16" fill="#a98bff">♪</text>
-    <text x="40" y="152" font-size="12" fill="#ffd166">★</text>
-  </svg>`,
-
-  ENFP: () => `<svg ${SVG_HEAD}>
-    ${body('#ffd166')}${neck}
-    <path d="M52 112 q-2 -58 48 -58 q50 0 48 58 q-2 26 -12 40 q-4 -28 4 -48 q-16 14 -40 14 q-24 0 -40 -14 q8 20 4 48 q-10 -14 -12 -40z" fill="#ff8fb1"/>
-    <ellipse cx="100" cy="112" rx="41" ry="39" fill="#ffd9c2"/>
-    <path d="M58 100 q8 -34 42 -34 q34 0 42 34 q-14 -14 -28 -8 q-14 6 -28 0 q-14 -6 -28 8z" fill="#ff8fb1"/>
-    ${face()}
-    ${MOUTH.open}
-    <text x="30" y="74" font-size="18" fill="#ffd166">✦</text>
-    <text x="152" y="66" font-size="15" fill="#a98bff">✦</text>
-    <text x="146" y="120" font-size="12" fill="#7ec8a9">✦</text>
-    <text x="36" y="136" font-size="12" fill="#ff8fb1">✦</text>
-    <path d="M144 150 q14 -6 12 8 q-10 4 -12 -8z" fill="#7ec8a9"/>
-  </svg>`,
-
-  ESTJ: () => `<svg ${SVG_HEAD}>
-    ${body('#c0392b')}${neck}
-    <ellipse cx="100" cy="112" rx="43" ry="41" fill="#ffd9c2"/>
-    <path d="M56 102 q6 -42 44 -42 q38 0 44 42 q-10 -16 -26 -16 q-8 10 -18 8 q-14 -3 -22 4 q-12 2 -22 4z" fill="#2b2a36"/>
-    ${face()}
-    <path d="M64 96 q12 -8 24 -2" stroke="#3a2b33" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <path d="M112 94 q12 -6 24 2" stroke="#3a2b33" stroke-width="3" fill="none" stroke-linecap="round"/>
-    ${MOUTH.smirk}
-    <path d="M70 148 l30 -6 l30 6 l-4 22 l-26 -4 l-26 4z" fill="#fff" opacity=".55"/>
-    <path d="M100 142 v26" stroke="#c0392b" stroke-width="2"/>
-    <circle cx="148" cy="152" r="14" fill="#ffd166" stroke="#e0a92e" stroke-width="2.5"/>
-    <path d="M148 144 l3 6 l6 1 l-5 4 l1 6 l-5 -3 l-5 3 l1 -6 l-5 -4 l6 -1z" fill="#e0a92e"/>
-    <path d="M36 152 l16 -4" stroke="#3a2b33" stroke-width="3" stroke-linecap="round"/>
-  </svg>`,
-
-  ESFJ: () => `<svg ${SVG_HEAD}>
-    ${body('#7ec8a9')}${neck}
-    <path d="M52 112 q0 -58 48 -58 q48 0 48 58 q0 20 -8 34 q-4 -24 2 -44 q-16 12 -42 12 q-26 0 -42 -12 q6 20 2 44 q-8 -14 -8 -34z" fill="#a0522d"/>
-    <ellipse cx="100" cy="112" rx="41" ry="39" fill="#ffd9c2"/>
-    <path d="M58 100 q8 -34 42 -34 q34 0 42 34 q-14 -14 -28 -8 q-14 6 -28 0 q-14 -6 -28 8z" fill="#a0522d"/>
-    ${face()}
-    ${MOUTH.smile}
-    <path d="M56 116 q-8 16 6 22" stroke="#a0522d" stroke-width="7" fill="none" stroke-linecap="round"/>
-    <path d="M144 116 q8 16 -6 22" stroke="#a0522d" stroke-width="7" fill="none" stroke-linecap="round"/>
-    <g transform="rotate(-10 150 150)"><path d="M138 144 h26 v10 q-13 10 -26 0z" fill="#ffefc2" stroke="#e0c9a0" stroke-width="2"/>
-    <path d="M138 144 l-4 -4 M164 144 l4 -4" stroke="#3a2b33" stroke-width="2"/></g>
-    <path d="M78 48 q10 -10 18 -2 M104 46 q10 -8 16 0" stroke="#a0522d" stroke-width="4" fill="none" stroke-linecap="round"/>
-  </svg>`,
-
-  ENFJ: null, /* 占位，下面覆盖 */
+/* ============ 12 只天赋兽 · 手绘 SVG 图标 ============ */
+const ICON=(c)=>`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${ANIMAL[c]}</svg>`;
+const ANIMAL={
+ /* 蚂蚁：8 字形三段身体 + 触角 + 六足 */
+ 'O+I':`<g stroke="#6D7795" stroke-width="3" stroke-linecap="round" fill="none"><path d="M25 44 L15 52"/><path d="M30 47 L27 58"/><path d="M38 42 L47 52"/><path d="M41 38 L52 42"/><path d="M44 15 q1 -8 7 -12"/><path d="M50 17 q6 -6 12 -5"/></g><ellipse cx="23" cy="39" rx="9" ry="8" fill="#6D7795"/><ellipse cx="34" cy="34" rx="7" ry="6" fill="#6D7795"/><circle cx="45" cy="24" r="8" fill="#6D7795"/><circle cx="48" cy="21" r="2.3" fill="#F0F7FA"/>`,
+ /* 狗：圆头 + 两只垂耳 + 白色口鼻 */
+ 'O+C':`<ellipse cx="13" cy="36" rx="7" ry="13" fill="#4a5270"/><ellipse cx="51" cy="36" rx="7" ry="13" fill="#4a5270"/><circle cx="32" cy="32" r="18" fill="#6D7795"/><ellipse cx="32" cy="42" rx="11" ry="8" fill="#F0F7FA" opacity=".92"/><circle cx="25" cy="28" r="3.2" fill="#F0F7FA"/><circle cx="39" cy="28" r="3.2" fill="#F0F7FA"/><ellipse cx="32" cy="38" rx="4.6" ry="3.4" fill="#4a5270"/><path d="M32 42 v4" stroke="#4a5270" stroke-width="2" stroke-linecap="round"/>`,
+ /* 蜘蛛：圆身 + 八条折腿 + 两只大眼 */
+ 'O+M':`<g stroke="#6D7795" stroke-width="3" stroke-linecap="round" fill="none"><path d="M20 28 L9 20 L6 27"/><path d="M19 34 L5 33"/><path d="M21 41 L9 48 L7 56"/><path d="M26 47 L21 59"/><path d="M44 28 L55 20 L58 27"/><path d="M45 34 L59 33"/><path d="M43 41 L55 48 L57 56"/><path d="M38 47 L43 59"/></g><circle cx="32" cy="37" r="15" fill="#6D7795"/><circle cx="26" cy="33" r="4.6" fill="#F0F7FA"/><circle cx="38" cy="33" r="4.6" fill="#F0F7FA"/><path d="M26 45 q6 4 12 0" stroke="#F0F7FA" stroke-width="2.4" fill="none" stroke-linecap="round"/>`,
+ /* 喜鹊：圆身 + 白肚 + 长尾 + 粉喙 */
+ 'I+O':`<path d="M30 48 q-10 8 -19 14 q7 -13 13 -18z" fill="#4a5270"/><path d="M38 48 q-1 10 -8 15 q3 -11 4 -16z" fill="#6D7795"/><ellipse cx="32" cy="36" rx="14" ry="13" fill="#4a5270"/><ellipse cx="33" cy="40" rx="8" ry="7" fill="#F0F7FA" opacity=".95"/><circle cx="36" cy="21" r="9" fill="#4a5270"/><path d="M44 19 l9 3 l-9 3.6z" fill="#D8C8E8"/><circle cx="38" cy="18" r="2.4" fill="#F0F7FA"/><path d="M24 26 q8 -7 14 -2 q-8 3 -9 8z" fill="#6D7795"/>`,
+ /* 鹿：正脸 + 分叉鹿角 + 白色吻部 */
+ 'I+C':`<g stroke="#4a5270" stroke-width="3" stroke-linecap="round" fill="none"><path d="M26 18 q-2 -10 -8 -15"/><path d="M24 11 q-8 -1 -12 -7"/><path d="M38 18 q2 -10 8 -15"/><path d="M40 11 q8 -1 12 -7"/></g><ellipse cx="15" cy="26" rx="5" ry="9" fill="#4a5270" transform="rotate(-30 15 26)"/><ellipse cx="49" cy="26" rx="5" ry="9" fill="#4a5270" transform="rotate(30 49 26)"/><path d="M32 20 q11 0 11 14 q0 18 -11 22 q-11 -4 -11 -22 q0 -14 11 -14z" fill="#6D7795"/><ellipse cx="32" cy="46" rx="7" ry="7" fill="#F0F7FA" opacity=".9"/><circle cx="26" cy="33" r="3" fill="#F0F7FA"/><circle cx="38" cy="33" r="3" fill="#F0F7FA"/><ellipse cx="32" cy="43" rx="3.4" ry="2.6" fill="#4a5270"/>`,
+ /* 鹰：左右展开的羽翼 + 白色钩喙 */
+ 'I+M':`<path d="M28 30 q-12 -16 -25 -12 q11 2 15 13 q-10 -1 -16 5 q14 3 26 -3z" fill="#4a5270"/><path d="M36 30 q12 -16 25 -12 q-11 2 -15 13 q10 -1 16 5 q-14 3 -26 -3z" fill="#4a5270"/><ellipse cx="32" cy="40" rx="10" ry="15" fill="#6D7795"/><path d="M20 52 q12 8 24 0" stroke="#4a5270" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="32" cy="21" r="10" fill="#6D7795"/><path d="M32 17 l9 5 l-9 4 q3 -5 0 -9z" fill="#D8C8E8"/><circle cx="28" cy="18" r="2.5" fill="#F0F7FA"/>`,
+ /* 马：正面马脸 + 尖耳 + 鬃毛 + 白色长鼻 */
+ 'C+O':`<g stroke="#4a5270" stroke-width="3" stroke-linecap="round" fill="none"><path d="M24 20 q-6 -6 -6 -13"/><path d="M40 20 q6 -6 6 -13"/></g><path d="M25 22 q-2 -10 3 -14 q1 8 4 11 q3 -7 8 -7 q0 6 -2 10" fill="#4a5270"/><path d="M32 18 q13 0 13 16 q0 12 -6 16 q-1 8 -7 8 q-6 0 -7 -8 q-6 -4 -6 -16 q0 -16 13 -16z" fill="#6D7795"/><path d="M25 44 q7 4 14 0 q1 12 -7 13 q-8 -1 -7 -13z" fill="#F0F7FA" opacity=".92"/><circle cx="24" cy="30" r="3.2" fill="#F0F7FA"/><circle cx="40" cy="30" r="3.2" fill="#F0F7FA"/><ellipse cx="27" cy="50" rx="2.2" ry="2.8" fill="#4a5270"/><ellipse cx="37" cy="50" rx="2.2" ry="2.8" fill="#4a5270"/>`,
+ /* 大雁：长颈 + 扁平橙喙 + 展开的双翼 */
+ 'C+I':`<path d="M17 44 q-9 -6 -13 -14 q10 3 15 8z" fill="#4a5270"/><path d="M47 44 q9 -6 13 -14 q-10 3 -15 8z" fill="#4a5270"/><ellipse cx="32" cy="45" rx="13" ry="11" fill="#6D7795"/><path d="M32 40 q-1 -18 2 -24" stroke="#6D7795" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="37" cy="14" r="8.5" fill="#6D7795"/><path d="M44 12 q8 1 8 4 q0 3 -8 4z" fill="#D8C8E8"/><circle cx="39" cy="11" r="2.3" fill="#F0F7FA"/><path d="M26 54 q6 5 12 0" stroke="#4a5270" stroke-width="3" fill="none" stroke-linecap="round"/>`,
+ /* 燕子：流线身体 + 长剪刀尾 + 尖翼 */
+ 'C+M':`<path d="M20 44 L2 62 L22 50 Z" fill="#4a5270"/><path d="M26 48 L14 64 L34 50 Z" fill="#4a5270"/><ellipse cx="34" cy="37" rx="15" ry="10" fill="#6D7795"/><ellipse cx="35" cy="41" rx="8" ry="5" fill="#F0F7FA" opacity=".9"/><path d="M30 29 q9 -11 18 -9 q-7 5 -7 12z" fill="#4a5270"/><circle cx="43" cy="25" r="8" fill="#4a5270"/><path d="M50 24 l8 3 l-8 3.2z" fill="#D8C8E8"/><circle cx="45" cy="22" r="2.2" fill="#F0F7FA"/>`,
+ /* 水獭：侧面长身 + 圆耳 + 白吻 + 胡须 */
+ 'M+O':`<ellipse cx="34" cy="40" rx="20" ry="14" fill="#6D7795"/><circle cx="18" cy="34" r="13" fill="#6D7795"/><circle cx="12" cy="23" r="5" fill="#4a5270"/><circle cx="25" cy="22" r="5" fill="#4a5270"/><ellipse cx="10" cy="38" rx="7" ry="5.5" fill="#F0F7FA" opacity=".95"/><circle cx="17" cy="30" r="2.8" fill="#F0F7FA"/><circle cx="27" cy="29" r="2.8" fill="#F0F7FA"/><ellipse cx="9" cy="34" rx="2.4" ry="2" fill="#4a5270"/><g stroke="#4a5270" stroke-width="1.8" stroke-linecap="round"><path d="M8 40 L0 42"/><path d="M9 44 L2 48"/></g><path d="M52 44 q8 -2 10 -10" stroke="#6D7795" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="30" cy="52" rx="4" ry="2.6" fill="#4a5270"/><ellipse cx="42" cy="52" rx="4" ry="2.6" fill="#4a5270"/>`,
+ /* 猴：大外耳 + 浅脸盘 + 笑眼 */
+ 'M+I':`<circle cx="11" cy="32" r="9" fill="#6D7795"/><circle cx="53" cy="32" r="9" fill="#6D7795"/><circle cx="11" cy="32" r="4.4" fill="#D8C8E8"/><circle cx="53" cy="32" r="4.4" fill="#D8C8E8"/><circle cx="32" cy="32" r="18" fill="#6D7795"/><ellipse cx="32" cy="36" rx="13.5" ry="13.5" fill="#F0F7FA" opacity=".93"/><path d="M22 30 q4 -5 8 0" stroke="#4a5270" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M34 30 q4 -5 8 0" stroke="#4a5270" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M24 42 q8 8 16 0" stroke="#4a5270" stroke-width="2.6" fill="none" stroke-linecap="round"/><ellipse cx="32" cy="36" rx="2" ry="1.6" fill="#4a5270"/>`,
+ /* 孔雀：扇形冠羽 + 椭圆身体 + 白点眼斑 */
+ 'M+C':`<g fill="#A9D6CF"><ellipse cx="32" cy="13" rx="4.6" ry="7"/><ellipse cx="20" cy="17" rx="4.6" ry="7" transform="rotate(-30 20 17)"/><ellipse cx="44" cy="17" rx="4.6" ry="7" transform="rotate(30 44 17)"/><ellipse cx="12" cy="27" rx="4.6" ry="7" transform="rotate(-58 12 27)"/><ellipse cx="52" cy="27" rx="4.6" ry="7" transform="rotate(58 52 27)"/></g><g fill="#D8C8E8"><circle cx="32" cy="11" r="2.8"/><circle cx="18" cy="15" r="2.8"/><circle cx="46" cy="15" r="2.8"/><circle cx="10" cy="26" r="2.8"/><circle cx="54" cy="26" r="2.8"/></g><path d="M32 22 q10 4 10 20 q0 14 -10 20 q-10 -6 -10 -20 q0 -16 10 -20z" fill="#6D7795"/><path d="M32 30 q6 6 6 16 q0 10 -6 14 q-6 -4 -6 -14 q0 -10 6 -16z" fill="#A9D6CF" opacity=".55"/><circle cx="30" cy="19" r="2.4" fill="#F0F7FA"/><circle cx="35" cy="19" r="2.4" fill="#F0F7FA"/>`
 };
 
-/* ENFJ 上面已定义，这里修正个别键 */
-MASCOTS.ENFJ = () => `<svg ${SVG_HEAD}>
-  ${body('#ff8fb1')}${neck}
-  <path d="M54 110 q0 -56 46 -56 q46 0 46 56 q0 22 -8 34 q-6 -22 2 -40 q-16 12 -40 12 q-24 0 -40 -12 q8 18 2 40 q-8 -12 -8 -34z" fill="#e7a04d"/>
-  <ellipse cx="100" cy="112" rx="41" ry="39" fill="#ffd9c2"/>
-  <path d="M59 100 q8 -34 41 -34 q33 0 41 34 q-14 -16 -28 -8 q-14 8 -26 0 q-12 -8 -28 8z" fill="#e7a04d"/>
-  ${face()}
-  ${MOUTH.open}
-  <path d="M62 66 q10 -12 18 -4 q-4 10 -10 12z" fill="#7ec8a9" opacity=".85"/>
-  <path d="M78 68 q8 -10 14 -2 q-3 8 -8 10z" fill="#7ec8a9" opacity=".7"/>
-  <g transform="rotate(-10 150 150)"><path d="M144 148 q10 -12 18 -2 q-6 12 -18 2z" fill="#ff5d8f"/>
-  <path d="M144 148 q8 4 16 0" stroke="#fff" stroke-width="1.6" fill="none"/></g>
-  <text x="34" y="150" font-size="15" fill="#ff8fb1">❤</text>
-</svg>`;
 
-/* 结果类型 → 形象主色（用于卡片背景） */
-const MASCOT_COLORS = {
-  INTJ:'#e8e2ff', INTP:'#dff0fb', ENTJ:'#dfe6f7', ENTP:'#fff2cf',
-  INFJ:'#dff3ec', INFP:'#f0e8ff', ENFJ:'#ffe3ec', ENFP:'#fff6d6',
-  ISTJ:'#e0ecfb', ISFJ:'#ffe8ee', ISTP:'#e6edf1', ISFP:'#fff6d6',
-  ESTP:'#ffe3d9', ESFP:'#ffe3ec', ESTJ:'#ffe0dc', ESFJ:'#dff3ec'
-};
-const MASCOT_ACCENT = {
-  INTJ:'#8b7bd8', INTP:'#4a9fd8', ENTJ:'#3a4a6b', ENTP:'#e0a92e',
-  INFJ:'#4f9c8b', INFP:'#b39ddb', ENFJ:'#ff8fb1', ENFP:'#e0a92e',
-  ISTJ:'#4a6fa5', ISFJ:'#e0899f', ISTP:'#5d6b73', ISFP:'#e0a92e',
-  ESTP:'#ff7a59', ESFP:'#ff5d8f', ESTJ:'#c0392b', ESFJ:'#4f9c8b'
-};
-const MASCOT_PERSONA = {
-  INTJ:'戴眼镜的小谋士', INTP:'抱放大镜的小博士', ENTJ:'举旗的小队长', ENTP:'吐舌头的小杠精',
-  INFJ:'戴月光的小先知', INFP:'抱花的小诗人', ENFJ:'捧爱心的小暖炉', ENFP:'满身星星的小火苗',
-  ISTJ:'拿清单的小管家', ISFJ:'拎药箱的小护士', ISTP:'扛扳手的小工程师', ISFP:'握画笔的小画家',
-  ESTP:'顶橄榄球的小疯子', ESFP:'戴麦克风的小明星', ESTJ:'拿哨子的小指挥', ESFJ:'端点心的小班长'
-};
 
-function mascot(id, cls=''){
-  const fn = MASCOTS[id];
-  return fn ? fn().replace('<svg ', `<svg class="${cls}" `) : '';
+/* ============ 12 种结果 ============ */
+const RESULTS={
+ 'O+I':{name:'布阵的蚁',foot:'一砖一瓦，自有章法',
+  desc:'你是天生的"流程体质"：拿到一件事，脑子里自动生成分解步骤、时间表和检查点。别人觉得你在小题大做，但你列的表格总是最后救了所有人。你的世界一旦有序，心就定了。',
+  jobs:[['业务流程架构师','把乱流程重排成模板，你做起来像玩游戏'],['数据分析师','你的严谨能让数据自己开口说话'],['质量体系经理','别人怕检查，你爱检查']],
+  pain:'你的"较真"常被当成挑剔；计划一变，你会比谁都烦躁。',
+  act:'把你手头最乱的一摊事，写成一份别人照着就能做的 SOP。',
+  avoid:'天天救火、毫无章法的环境——会让你耗到怀疑人生。'},
+ 'O+C':{name:'恋家的犬',foot:'看家护院，一个都不少',
+  desc:'你是团队里"让人心安"的那个人：进度你盯着，人的情绪你也照顾着。你不是最耀眼的，但一个集体散没散、稳不稳，往往取决于有没有你。',
+  jobs:[['项目经理','把人和事都兜住，正是你天赋的用法'],['HRBP','既懂制度又懂人心，你是天选 HR'],['客户成功经理','客户有事第一个想到的，永远是你']],
+  pain:'你把"都交给我"挂在嘴边，最后累的是自己，还没人说你好。',
+  act:'这周为团队做一件小事：整理一次共享文件夹、或排一张值班表。',
+  avoid:'只谈钱、不谈人的纯业务岗——你会觉得冷得刺骨。'},
+ 'O+M':{name:'结网的蛛',foot:'一丝一线，都是手艺',
+  desc:'你既能构想，又能落地，而且落得极细。你做出的东西总有一种"该是这个样子"的妥帖感——因为你在别人看不见的地方多做了三十步。',
+  jobs:[['工业设计师','毫米级的执念，就是你的核心竞争力'],['前端架构师','优雅的代码结构是你的蛛网'],['高级厨师','一道菜的工序，你愿意调一百次']],
+  pain:'你的高标准让你很难对成果说"满意"，也常让别人压力山大。',
+  act:'选一样你最常用的小物（杯子、桌面、代码库），把它调整到你的极致标准。',
+  avoid:'只求"差不多就行"的团队——你的手艺会被磨平。'},
+ 'I+O':{name:'择木的鹊',foot:'哪里不对劲，一眼就看穿',
+  desc:'你的眼睛自带"找茬模式"：合同里的坑、报表里的异常、逻辑里的漏洞，你扫一眼就能定位。你以为人人都能看见，其实这是天赋。',
+  jobs:[['审计师','别人眼里的细节地狱，是你的主场'],['商业分析师','从杂乱信息里定位真问题'],['风控建模师','你天生对"不对劲"敏感']],
+  pain:'你总能看见问题，却常常没人愿意听——这让憋得慌。',
+  act:'本周挑一份大家都在用的文档或流程，找出三个隐患并写下来。',
+  avoid:'需要你"睁一只眼闭一只眼"的环境——你会内耗到失眠。'},
+ 'I+C':{name:'听风的鹿',foot:'草木未动，先知有变',
+  desc:'你能听见"没说出口的话"：会议室里谁不服、消息里哪句在强撑、朋友说"没事"时其实有事。别人惊讶你怎么知道的——你就是知道。',
+  jobs:[['心理咨询师','你的耳朵天生能接住人'],['招聘专家','一面就能看穿人和岗位合不合'],['用户研究员','用户嘴上说 A，你知道 ta 想 B']],
+  pain:'感知得太细，别人的情绪会变成你的负重；你也常被说"想太多"。',
+  act:'今天认真听一个人说话，只听，不建议、不接话，结束后写下你听到的那句"潜台词"。',
+  avoid:'满是表演型社交的场子——你的天线会过载。'},
+ 'I+M':{name:'远见的鹰',foot:'站得高，看得远',
+  desc:'大家在讨论"今天怎么办"，你已经在想"这东西两年后会怎样"。你常常是那个先说出口的人——你说完，房间会安静两秒。',
+  jobs:[['产品经理','从一堆需求里挑出真正该做的那个'],['战略规划师','你的长线判断让公司少走弯路'],['投资分析师','你比别人早半年看到趋势']],
+  pain:'想得太远，常没人跟得上，于是你被当成"想太多的人"。',
+  act:'为你正在做的一件事写一页"三年后它会变成什么样"。',
+  avoid:'纯执行岗——每天按流程走，会让你憋坏。'},
+ 'C+O':{name:'识途的马',foot:'路再长，认得回家',
+  desc:'你是"稳"的化身：答应的事一定办到，答应的人一定顾到。你不是跑得最快的，但 everyone 慌的时候，大家会下意识看你一眼。',
+  jobs:[['员工关系经理','再难的局面你都能接得稳'],['护士长','既守流程又护人心'],['班主任','家长和学生都服你']],
+  pain:'你太可靠，可靠到大家忘了你也会累；你的委屈总排在最后。',
+  act:'这周对一件超出你承受范围的请求，练习说一次"这次不行"。',
+  avoid:'频繁换血、人心浮动的地方——你会累到想消失。'},
+ 'C+I':{name:'传书的雁',foot:'千里之外，话不肯丢',
+  desc:'你有翻译天赋：能把技术讲给运营听、把领导的意思讲给新人听、把父母的唠叨翻译成关心。你是人与人之间那条不断掉的线。',
+  jobs:[['企业培训师','复杂的事你讲三遍就能让人懂'],['技术文档工程师','全公司最难的文档都该给你'],['科普作者','你让知识有了温度']],
+  pain:'你总在中间传话、调和，最容易被两边误伤。',
+  act:'把一个你懂、但别人常搞错的概念，写成一段 200 字的通俗解释。',
+  avoid:'信息高度封闭、各说各话的团队——你会觉得自己是空气。'},
+ 'C+M':{name:'衔泥的燕',foot:'一点一点，把一个家筑起来',
+  desc:'你擅长"经营感觉"：一个群、一个小圈子、一段关系，你能让它从冷清变得有温度。你做的事很碎，但碎出来的东西最像家。',
+  jobs:[['职业规划师','你能陪人走出最难的一段'],['绘本作者','你的温柔会变成画面'],['社群主理人','你养的社群，别人挖不走']],
+  pain:'你投入的是心血，回报却常常看不见、摸不着，还会被当成理所当然。',
+  act:'给一个你一直默默维护的关系（群、朋友、家人），做一件让 ta 们"被看见"的小事。',
+  avoid:'只看 KPI、不看人的地方——你的心血在那里一文不值。'},
+ 'M+O':{name:'筑坝的獭',foot:'想到就动手，动手就成形',
+  desc:'你是"想法→实物"转换器：别人还在头脑风暴，你已经搭出了能点开、能上手、能看的东西。而且你的东西不是糊的，是有结构的。',
+  jobs:[['产品设计师','从想法到像素，你全程自己来'],['全栈工程师','一个人就是一支队伍'],['建筑设计师','你的图纸能扛住现实']],
+  pain:'你做得太快、太完整，反而让合作者觉得插不上手。',
+  act:'把最近一个停留在嘴上的想法，用一周做出一个最粗糙但能用的版本。',
+  avoid:'永远在讨论、从不出成果的会——你会想当场消失。'},
+ 'M+I':{name:'破笼的猴',foot:'笼子锁不住好奇心',
+  desc:'你对"没人做过的事"有天然的引力：新工具、新玩法、新赛道，你总是第一批摸清楚的人。你的人生词典里没有"安分"，只有"再试一次"。',
+  jobs:[['独立开发者','一个人、一个想法、一个产品'],['R&D 研究员','没人走过的路，正是你的路'],['创业者','你就是那个先跳出去的人']],
+  pain:'你的三分钟热度常被批评，可那不是不坚持——是你已经探完了。',
+  act:'本周学一个完全没接触过的工具或领域，做出一个最小的尝试。',
+  avoid:'把"稳定"当最高价值的地方——你会闷出病来。'},
+ 'M+C':{name:'开屏的雀',foot:'美是我的语言',
+  desc:'你天然知道什么"好看"、什么"动人"：一句文案、一张图、一段视频的温度，你拿捏得刚刚好。你做的不是产品，是让人心头一动的东西。',
+  jobs:[['内容创作者','你的表达自带记忆点'],['编剧','你写的人，观众会当真'],['品牌设计师','美就是你的专业']],
+  pain:'你的审美被否掉时，疼的不是方案，是你本人。',
+  act:'发一条你真正想表达的内容（不迎合任何人），看看谁被它打动。',
+  avoid:'"老板觉得好才是好"的地方——你的灵感冒不了头。'}
+};
+const ORDER=['O+I','O+C','O+M','I+O','I+C','I+M','C+O','C+I','C+M','M+O','M+I','M+C'];
+const DIM_LABEL={O:'秩序力',I:'洞察力',C:'连接力',M:'创造力'};
+
+/* ============ 状态 ============ */
+const $=s=>document.querySelector(s);
+let idx=0;
+const answers=new Array(QUESTIONS.length).fill(null);
+const pages={cover:$('#p-cover'),quiz:$('#p-quiz'),result:$('#p-result')};
+let current='cover';
+
+function show(name){
+  Object.values(pages).forEach(p=>p.classList.remove('show'));
+  pages[name].classList.add('show');
+  current=name;
 }
-
-/* =========================================================
-   16 种结果
-   ========================================================= */
-const TYPES = {
-  ISTJ:{ name:'守规矩的小管理员', tag:['秩序感','记性好','怕变化'],
-    sub:'你的内心小孩是一个把玩具按大小排队、并且记得每颗弹珠来历的人。',
-    desc:'你小时候就懂“先做完该做的，再做想做的”。你的安全感来自可预期：同样的碗、同样的路线、同样的晚安顺序。别人觉得你早熟，其实你只是需要一个不会突然变形的世界。你最大的温柔是沉默的可靠——答应的事一定做到，借出去的东西一定记得要回来。',
-    kid:'一个把糖果按颜色分格收好的小孩', toy:'有说明书的拼装玩具', break:'突然被通知“计划改了”',
-    comfort:'提前告诉他接下来会发生什么', skill:'记得所有人说过的话', grown:'那个让团队不出错的人' },
-  ISFJ:{ name:'暖手宝小护士', tag:['照顾人','记细节','不会拒绝'],
-    sub:'你的内心小孩口袋里总有一张创可贴，是留给别人的。',
-    desc:'你从小就是那个“懂事”的孩子：记得妈妈哪天不舒服，记得朋友不吃香菜。你的关心非常具体——是热水、是外套、是“你刚才是不是没吃饱”。代价是你很少说“我不想要”，因为你怕让别人为难。你的内心小孩其实也想被问一句：那你呢？',
-    kid:'看到别人哭就递纸巾的小孩', toy:'一只被抱到掉毛的玩偶', break:'自己的付出被当成理所当然',
-    comfort:'有人反过来照顾你一次', skill:'未说出口的情绪你都能感觉到', grown:'那个默默托住所有人的人' },
-  INFJ:{ name:'藏心事的预言家', tag:['洞察','理想主义','内耗'],
-    sub:'你的内心小孩很安静，但脑子里有一整个宇宙在开会。',
-    desc:'你小时候就常常“想得太多”：别人一句话，你能在心里推演出三种结局。你渴望被真正理解，但又很难让人靠近，因为你要的不是安慰，是“你也这样想吗”。你有强烈的正义感和一个不愿说出口的使命——想让世界好一点点。你的内心小孩最怕的是：自己的深刻，被当成矫情。',
-    kid:'在窗边看雨、心里写诗的小孩', toy:'一本写满字的日记本', break:'被说“你想太多了”',
-    comfort:'有人不打断地听你说完', skill:'一眼看穿别人的伪装', grown:'那个讲故事、也治愈人的人' },
-  INTJ:{ name:'图纸上的小建筑师', tag:['独立','长远','嘴硬'],
-    sub:'你的内心小孩已经规划好了 20 年后房子的样子。',
-    desc:'你小时候不太爱解释，因为你觉得“这很明显”。你享受把混乱变有序的过程：把积木搭成城，把规则想通，把问题解决。你不需要很多朋友，但需要被承认“我是对的”。你最大的软肋是——你其实很在意被看见，只是不肯承认。',
-    kid:'把整个房间改造成基地的小孩', toy:'一套可以搭到天花板的积木', break:'被强行打断思路',
-    comfort:'给他空间，别催他说话', skill:'把复杂的事想成一条路', grown:'那个提前看到问题的人' },
-  ISTP:{ name:'拆东西的小工程师', tag:['动手','冷静','不爱解释'],
-    sub:'你的内心小孩拆过家里所有能拆的东西，包括那个闹钟。',
-    desc:'你学东西靠手，不靠嘴。别人讲十遍，你上手一次就会。你情绪稳定得惊人，出了事第一反应是“怎么修”，而不是“怎么办”。你不喜欢被管，也不喜欢解释自己。你的内心小孩最舒服的时刻，是没人打扰、专注摆弄一样东西的下午。',
-    kid:'蹲在院子里修自行车的小孩', toy:'一把螺丝刀和一个坏掉的玩具', break:'被逼着说“你到底怎么想的”',
-    comfort:'别问，递给他一杯水就好', skill:'什么东西坏了一眼就知道', grown:'那个关键时刻能上手的人' },
-  ISFP:{ name:'温柔的小艺术家', tag:['敏感','审美','怕冲突'],
-    sub:'你的内心小孩用颜色和声音记事，不用道理。',
-    desc:'你从小对“美不美”特别敏感：衣服的触感、房间的光、别人说话的语气。你不喜欢争，遇到冲突第一反应是躲开，但心里会记很久。你的世界很私人，愿意分享的时候才是真的信任。你的内心小孩最需要的，是一个不会评价你作品的人。',
-    kid:'把墙画满、被骂了还偷偷得意的小孩', toy:'一盒快用完的彩色铅笔', break:'自己的东西被人随便评价',
-    comfort:'不问缘由地陪着他', skill:'把情绪变成好看的东西', grown:'那个让生活变好看的人' },
-  INFP:{ name:'写故事的小诗人', tag:['理想','共情','容易碎'],
-    sub:'你的内心小孩相信世界上一定有一只属于自己的神奇生物。',
-    desc:'你小学时可能写过一本没给任何人看的故事。你共情力极强，看到不公平的事会真的难受，甚至替陌生人难过。你不太适应粗糙的现实，但你有别人没有的能力——把痛苦翻译成温柔。你的内心小孩最怕的不是失败，是“变成自己讨厌的大人”。',
-    kid:'在本子角落画小人的小孩', toy:'一支笔和没人看的故事', break:'被迫做违心的事',
-    comfort:'告诉他“你这样很好”', skill:'把难过写成让人共鸣的东西', grown:'那个守住了初心的人' },
-  INTP:{ name:'十万个为什么小博士', tag:['好奇','逻辑','拖延'],
-    sub:'你的内心小孩问的问题，让大人不知道怎么回答。',
-    desc:'你小时候最常说的话是“为什么”。你对世界运行的方式着迷，但对“该怎么做人”兴趣不大。你能一个人研究一下午，也能把作业拖到最后一晚。你不太会安慰人，但你会认真帮人分析。你的内心小孩最享受的，是“啊，原来是这样”的那一秒。',
-    kid:'把百科全书翻烂的小孩', toy:'一套实验小器材', break:'被要求“别问那么多”',
-    comfort:'跟他讨论问题本身', skill:'看穿逻辑漏洞', grown:'那个想明白很多事的人' },
-  ESTP:{ name:'停不下来的小疯子', tag:['行动力','胆大','坐不住'],
-    sub:'你的内心小孩没有“等一等”这个按钮。',
-    desc:'你小时候膝盖上永远有伤。你学东西快、反应快，凡事都想亲自试一遍。你天生会带气氛，房间里只要有你就不会冷场。你不喜欢计划，也不喜欢被问“以后怎么办”。你的内心小孩最怕的，是被关在一个太安静的房间里。',
-    kid:'从树上跳下来还笑的小孩', toy:'一辆骑到掉漆的自行车', break:'被迫坐着不动',
-    comfort:'带他出去跑一圈', skill:'别人还在犹豫时你已经做完了', grown:'那个敢第一个上的人' },
-  ESFP:{ name:'全场最亮的小明星', tag:['感染力','当下','怕冷场'],
-    sub:'你的内心小孩一进门，房间的温度就升高两度。',
-    desc:'你从小就会“让别人开心”：会讲笑话、会跳舞、会在尴尬时救场。你活在当下，很少为明天焦虑。你的快乐是真的，但你的难过常常被自己藏起来——因为你不允许自己扫兴。你的内心小孩最需要的，是有人告诉他：你不笑的时候，我也不会走。',
-    kid:'在客厅给大家表演的小孩', toy:'一支玩具麦克风', break:'被忽视、被冷落',
-    comfort:'认真听他讲完，并且笑', skill:'三分钟让陌生人喜欢上你', grown:'那个把大家聚在一起的人' },
-  ENFP:{ name:'满脑子点子的小火苗', tag:['热情','发散','三分钟热度'],
-    sub:'你的内心小孩同时想做 12 件事，并且都觉得自己能做到。',
-    desc:'你小时候的梦想换过很多次，但每次都真心。你对人充满好奇，能迅速和人变熟，也容易对重复的事情失去兴趣。你相信可能性，讨厌被贴标签。你的内心小孩最怕的是“被困住”——困在一份工作、一段关系、一种被规定的人生里。',
-    kid:'同时开五个“项目”的小孩', toy:'一堆做到一半的手工', break:'被要求按部就班',
-    comfort:'陪他一起发疯', skill:'把无聊的事讲得有趣', grown:'那个总能找到新可能的人' },
-  ENTP:{ name:'爱抬杠的小辩论家', tag:['机灵','反叛','嘴快'],
-    sub:'你的内心小孩最喜欢的词是“那如果……”。',
-    desc:'你小时候不是故意捣乱，你只是觉得规则值得被质疑一下。你脑子转得快，喜欢挑战、喜欢赢，也喜欢看大人被问住的样子。你能同时理解正反两方，所以立场常常变。你的内心小孩最怕的，是“没意思”。',
-    kid:'把老师问住、还挺得意的小孩', toy:'一个可以拆了重装的机器人', break:'被要求闭嘴听话',
-    comfort:'跟他辩一场，然后认输', skill:'三句话找到别人逻辑的缝', grown:'那个提出新玩法的人' },
-  ESTJ:{ name:'小队长本人', tag:['执行力','直接','爱安排'],
-    sub:'你的内心小孩玩游戏时，会先站出来讲规则。',
-    desc:'你从小就有一点“领导范”：组织游戏、分配角色、盯着大家别偷懒。你喜欢明确、讨厌含糊，做事讲究效率。你说话直，容易让人觉得凶，但你其实非常负责任。你的内心小孩最受不了的是：一群人磨磨蹭蹭、没人做决定。',
-    kid:'给一群孩子分配任务的小孩', toy:'一个哨子', break:'事情推进不下去',
-    comfort:'认可他做成了什么', skill:'把混乱收拾成秩序', grown:'那个把事情真正做成的人' },
-  ESFJ:{ name:'操心的小班长', tag:['热心','在意评价','会照顾'],
-    sub:'你的内心小孩记得全班同学生日。',
-    desc:'你从小就很会照顾气氛：谁被孤立了你会去搭话，谁不开心你会去问。你非常在意“大家喜不喜欢我”，一句冷淡的回复能让你想一整晚。你的温暖是主动的、具体的、有行动的。你的内心小孩最需要的，是确认“我没有做错什么”。',
-    kid:'组织生日会、自己最后吃蛋糕的小孩', toy:'一本记着同学生日的本子', break:'被冷处理、被已读不回',
-    comfort:'明确告诉他“我很喜欢你”', skill:'让每个人都有参与感', grown:'那个团队里最有人情味的人' },
-  ENFJ:{ name:'天生的鼓励师', tag:['共情','引导','责任感'],
-    sub:'你的内心小孩看到别人难过，会不自觉地开始想办法。',
-    desc:'你小时候就常被大人说“懂事”“会说话”。你能感觉到别人的情绪，也会主动去调节。你擅长鼓励人，也真心希望身边的人都变好。但你的内心小孩常常忘记自己——你把所有人的事都放在心上，唯独自己的委屈排到最后。',
-    kid:'安慰所有人、自己偷偷哭的小孩', toy:'一张贴满奖状又不敢挂的墙', break:'努力了却帮不到人',
-    comfort:'有人问“那你呢”', skill:'一句话说到人心里', grown:'那个照亮一群人的人' },
-  ENTJ:{ name:'小小总指挥', tag:['目标感','强势','不怕冲突'],
-    sub:'你的内心小孩玩过家家时，永远演老板。',
-    desc:'你从小就目标清晰，知道自己要什么，并且会去拿。你不怕冲突，也不怕承担，遇到问题第一反应是“怎么解决”。你对自己狠，对别人也要求高。你的内心小孩最怕的，是“失控”和“被看轻”。',
-    kid:'把一屋子孩子组织起来“开会”的小孩', toy:'一块可以当白板的墙', break:'计划被打乱、被小看',
-    comfort:'承认他的能力，别安慰他', skill:'把愿望变成计划', grown:'那个带队往前走的人' },
-  INTP_old:{}
-};
-delete TYPES.INTP_old;
-
-/* 维度说明（用于结果页的进度条） */
-const DIM_LABEL = {
-  EI:{ l:'E 外向', r:'I 内向' },
-  SN:{ l:'S 实感', r:'N 直觉' },
-  TF:{ l:'T 思考', r:'F 情感' },
-  JP:{ l:'J 判断', r:'P 知觉' }
-};
-
-/* =========================================================
-   状态与渲染
-   ========================================================= */
-const TOTAL = QUESTIONS.length;
-let idx = 0;
-const answers = new Array(TOTAL).fill(null);
-
-const $ = s => document.querySelector(s);
-const qCount=$('#qCount'), qBar=$('#qBar'), qIndex=$('#qIndex'), qText=$('#qText'),
-      qOptions=$('#qOptions'), nextBtn=$('#nextBtn'), prevBtn=$('#prevBtn'),
-      qDims=$('#qDims'), quizEl=$('#quiz'), resultEl=$('#result');
-
-function dimOf(i){ return QUESTIONS[i].dim; }
-
-function renderQuestion(){
-  const q = QUESTIONS[idx];
-  qCount.textContent = `第 ${idx+1} 题 / 共 ${TOTAL} 题`;
-  qIndex.textContent = 'QUESTION ' + String(idx+1).padStart(2,'0');
-  qText.textContent = q.q;
-  qBar.style.width = ((idx)/TOTAL*100) + '%';
-  const d = DIM_LABEL[q.dim];
-  qDims.textContent = q.dim === 'EI' ? '测量维度 · 能量来源'
-                    : q.dim === 'SN' ? '测量维度 · 信息接收'
-                    : q.dim === 'TF' ? '测量维度 · 决策方式'
-                    : '测量维度 · 生活节奏';
-
-  qOptions.innerHTML = '';
-  q.opts.forEach((o, i) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'option' + (answers[idx] === i ? ' selected' : '');
-    btn.innerHTML = `<span class="key">${i+1}</span><span>${o.t}</span>`;
-    btn.addEventListener('click', () => choose(i));
-    qOptions.appendChild(btn);
+function renderQ(){
+  const q=QUESTIONS[idx];
+  $('#qCount').textContent='Q '+String(idx+1).padStart(2,'0')+' / '+QUESTIONS.length;
+  $('#qGroup').textContent=GROUPS[q.g];
+  $('#qBar').style.width=(idx/QUESTIONS.length*100)+'%';
+  $('#qTitle').textContent=q.q;
+  const box=$('#qOpts');box.innerHTML='';
+  q.o.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.type='button';b.className='opt'+(answers[idx]===i?' sel':'');
+    b.innerHTML=`<span class="key">${'ABCD'[i]}</span><span>${o[0]}</span>`;
+    b.onclick=()=>{answers[idx]=i;
+      [...box.children].forEach((el,k)=>el.classList.toggle('sel',k===i));
+      setTimeout(next,220);};
+    box.appendChild(b);
   });
-
-  prevBtn.disabled = idx === 0;
-  nextBtn.disabled = answers[idx] === null;
-  nextBtn.textContent = idx === TOTAL-1 ? '查看结果 →' : '下一题 →';
-  window.scrollTo({ top: quizEl.getBoundingClientRect().top + window.scrollY - 140, behavior:'smooth' });
+  $('#prevBtn').disabled=idx===0;
 }
-
-function choose(i){
-  answers[idx] = i;
-  [...qOptions.children].forEach((el, k) => el.classList.toggle('selected', k === i));
-  nextBtn.disabled = false;
-}
-
 function next(){
-  if (answers[idx] === null) return;
-  if (idx < TOTAL - 1){ idx++; renderQuestion(); }
+  if(idx<QUESTIONS.length-1){idx++;renderQ();}
   else finish();
 }
-function prev(){
-  if (idx > 0){ idx--; renderQuestion(); }
-}
-
-nextBtn.addEventListener('click', next);
-prevBtn.addEventListener('click', prev);
-$('#resetBtn').addEventListener('click', resetAll);
-$('#againBtn').addEventListener('click', resetAll);
-
-document.addEventListener('keydown', e => {
-  if (resultEl.classList.contains('show')) return;
-  if (['1','2','3','4'].includes(e.key)){
-    const i = Number(e.key) - 1;
-    if (i < qOptions.children.length){ choose(i); }
-  }
-  if (e.key === 'ArrowRight'){ e.preventDefault(); next(); }
-  if (e.key === 'ArrowLeft'){ e.preventDefault(); prev(); }
-});
-
-function resetAll(){
-  idx = 0; answers.fill(null);
-  resultEl.classList.remove('show');
-  quizEl.classList.remove('hidden');
-  history.replaceState(null, '', location.pathname);
-  renderQuestion();
-  document.getElementById('start').scrollIntoView({behavior:'smooth'});
-}
-/* 从任何地方回到答题（清空 URL 上的 ?r=） */
-function restartQuiz(){ resetAll(); }
-
-/* ---------- 计分 ---------- */
-function compute(){
-  const score = { E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0 };
-  const per = { EI:{a:0,b:0}, SN:{a:0,b:0}, TF:{a:0,b:0}, JP:{a:0,b:0} };
-  answers.forEach((ai, qi) => {
-    if (ai === null) return;
-    const q = QUESTIONS[qi];
-    const v = q.opts[ai].v;
-    score[v]++;
-    const pair = { EI:['E','I'], SN:['S','N'], TF:['T','F'], JP:['J','P'] }[q.dim];
-    if (v === pair[0]) per[q.dim].a++; else per[q.dim].b++;
-  });
-  const code = (score.E >= score.I ? 'E':'I')
-             + (score.S >= score.N ? 'S':'N')
-             + (score.T >= score.F ? 'T':'F')
-             + (score.J >= score.P ? 'J':'P');
-  return { code, per, score };
-}
-
-/* ---------- 结果渲染 ---------- */
 function finish(){
-  const { code, per } = compute();
-  const t = TYPES[code];
-  if (!t) { alert('结果类型缺失：' + code); return; }
-
-  quizEl.classList.add('hidden');
-  resultEl.classList.add('show');
-
-  paintResult(code, true, per);
-  history.replaceState(null, '', '?r=' + code);
-  resultEl.scrollIntoView({behavior:'smooth', block:'start'});
+  const s={O:0,I:0,C:0,M:0};
+  answers.forEach((ai,qi)=>{if(ai!==null)s[QUESTIONS[qi].o[ai][1]]++;});
+  const sorted=Object.entries(s).sort((a,b)=>b[1]-a[1]);
+  const code=sorted[0][0]+ '+' +sorted[1][0];
+  const r=RESULTS[code]||RESULTS[ORDER[0]];
+  $('#rEmoji').innerHTML=ICON(code);
+  $('#rName').textContent=r.name;
+  $('#rCode').textContent='主天赋 '+sorted[0][0]+' · 副天赋 '+sorted[1][0];
+  $('#rFoot').textContent=r.foot;
+  $('#rDesc').textContent=r.desc;
+  $('#rJobs').innerHTML=r.jobs.map(j=>`<li><b>${j[0]}</b> —— ${j[1]}</li>`).join('');
+  $('#rPain').textContent=r.pain;
+  $('#rAct').textContent=r.act;
+  $('#rAvoid').textContent=r.avoid;
+  const max=Math.max(...Object.values(s),1);
+  $('#rDims').innerHTML=Object.entries(s).map(([k,v])=>`
+    <div class="d"><b>${k}</b><span>${DIM_LABEL[k]}</span>
+    <div class="bar"><i style="width:${Math.round(v/max*100)}%"></i></div></div>`).join('');
+  renderMatrix(code);
+  show('result');
+  history.replaceState(null,'','#'+code);
 }
-
-/* 统一渲染结果页（per 为空时表示来自分享链接） */
-function paintResult(code, animated, per){
-  const t = TYPES[code];
-  if (!t) return;
-  resultEl.classList.add('show');
-  quizEl.classList.add('hidden');
-
-  // 形象
-  const frame = $('#rMascot');
-  frame.style.setProperty('--mascot-bg', MASCOT_COLORS[code]);
-  frame.innerHTML = mascot(code, animated ? 'float' : '');
-  frame.setAttribute('aria-label', MASCOT_PERSONA[code]);
-
-  $('#rCode').textContent = 'RESULT · ' + code + ' · ' + MASCOT_PERSONA[code];
-  $('#rCode').style.background = MASCOT_ACCENT[code];
-  $('#rName').textContent = t.name;
-  $('#rSub').textContent = t.sub;
-  $('#rDesc').textContent = t.desc;
-  $('#rTags').innerHTML = t.tag.map(x => `<span class="tag"># ${x}</span>`).join('');
-  $('#rKid').textContent = t.kid;
-  $('#rToy').textContent = t.toy;
-  $('#rBreak').textContent = t.break;
-  $('#rComfort').textContent = t.comfort;
-  $('#rSkill').textContent = t.skill;
-  $('#rGrown').textContent = t.grown;
-
-  // 维度条
-  const dimsEl = $('#rDims');
-  if (per){
-    dimsEl.innerHTML = Object.keys(per).map(k => {
-      const { a, b } = per[k];
-      const total = a + b || 1;
-      const left = Math.round(a/total*100);
-      const lab = DIM_LABEL[k];
-      const val = a >= b ? lab.l : lab.r;
-      return `<div class="dim">
-        <div class="dim-label"><span>${lab.l[0]}</span><span>${lab.r[0]}</span></div>
-        <div class="dim-bar"><i class="l" style="width:${left}%"></i><i class="r" style="width:${100-left}%"></i></div>
-        <div class="dim-val">${val} · ${Math.max(left,100-left)}%</div>
-      </div>`;
-    }).join('');
-  } else   {
-    dimsEl.innerHTML = '<div class="dim" style="grid-column:1/-1;color:var(--text-muted);font-size:13px;line-height:1.7">尚未完成测试，暂时看不到你自己的四维度分布。👉 <a href="#start" id="goQuiz" style="font-weight:700">去做 28 道题</a>（约 5 分钟），或者先看看这个类型的性格画像。</div>';
-    const gq = document.getElementById('goQuiz');
-    if (gq) gq.onclick = (e) => { e.preventDefault(); restartQuiz(); };
-  }
-
-  // 全部类型（带小头像）
-  const order = ['ISTJ','ISFJ','INFJ','INTJ','ISTP','ISFP','INFP','INTP','ESTP','ESFP','ENFP','ENTP','ESTJ','ESFJ','ENFJ','ENTJ'];
-  $('#allGrid').innerHTML = order.map(c =>
-    `<div class="${c===code?'me':''}" style="--mascot-bg:${MASCOT_COLORS[c]}">
-      <span class="mini">${mascot(c)}</span>
-      <span class="tt"><b>${c}</b><em>${TYPES[c].name}</em></span>
-    </div>`
-  ).join('');
-
-  // 分享
-  const link = location.origin + location.pathname + '?r=' + code;
-  $('#rLink').textContent = link;
-  $('#copyBtn').onclick = () => copy(link, '链接已复制');
-  $('#copyTextBtn').onclick = () => {
-    const txt = `我的内心小孩是 ${code} · ${t.name}（${MASCOT_PERSONA[code]}）\n${t.sub}\n\n${t.desc}`;
-    copy(txt, '文字结果已复制');
-  };
-}
-
-function copy(text, msg){
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(() => toast(msg)).catch(() => fallback(text, msg));
-  } else fallback(text, msg);
-}
-function fallback(text, msg){
-  const ta = document.createElement('textarea');
-  ta.value = text; document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); } catch(e){}
-  document.body.removeChild(ta);
-  toast(msg);
-}
-let toastTimer;
-function toast(msg){
-  let el = document.getElementById('toast');
-  if (!el){
-    el = document.createElement('div');
-    el.id = 'toast';
-    el.style.cssText = 'position:fixed;left:50%;bottom:32px;transform:translateX(-50%);background:var(--text-default);color:var(--canvas-default);padding:8px 16px;border-radius:6px;font-size:13px;z-index:999;opacity:0;transition:opacity .2s';
-    document.body.appendChild(el);
-  }
-  el.textContent = msg;
-  el.style.opacity = '1';
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.style.opacity = '0', 1800);
-}
-
-/* ---------- 分享链接直达结果 ---------- */
-function checkShared(){
-  const p = new URLSearchParams(location.search);
-  const r = (p.get('r') || '').toUpperCase();
-  if (r && TYPES[r]) paintResult(r, false, null);
-}
-
-/* ---------- 首页 16 只小孩画廊 ---------- */
-function renderRoster(){
-  const order = ['INTJ','INTP','ENTJ','ENTP','INFJ','INFP','ENFJ','ENFP','ISTJ','ISFJ','ISTP','ISFP','ESTP','ESFP','ESTJ','ESFJ'];
-  const grid = document.getElementById('rosterGrid');
-  if (!grid) return;
-  grid.innerHTML = order.map(c => `
-    <button class="roster-card" type="button" data-type="${c}"
-      style="--mascot-bg:${MASCOT_COLORS[c]};--mascot-accent:${MASCOT_ACCENT[c]}">
-      <div class="avatar">${mascot(c)}</div>
-      <div class="code">${c}</div>
-      <div class="nm">${TYPES[c].name}</div>
-      <div class="pers">${MASCOT_PERSONA[c]}</div>
+function renderMatrix(cur){
+  $('#mGrid').innerHTML=ORDER.map(c=>`
+    <button type="button" data-c="${c}" class="${c===cur?'cur':''}">
+      <span class="em">${ICON(c)}</span><span class="lb">${RESULTS[c].name.slice(0,3)}</span>
     </button>`).join('');
-
-  grid.addEventListener('click', e => {
-    const card = e.target.closest('.roster-card');
-    if (!card) return;
-    paintResult(card.dataset.type, false, null);
-    history.replaceState(null, '', '?r=' + card.dataset.type);
-    document.getElementById('result').scrollIntoView({behavior:'smooth', block:'start'});
-  });
 }
-
-/* ---------- 主题切换 ---------- */
-const themeBtn = document.getElementById('themeBtn');
-function setTheme(mode){
-  document.documentElement.setAttribute('data-theme', mode);
-  try { localStorage.setItem('kid-mbti-theme', mode); } catch(e){}
-}
-themeBtn.addEventListener('click', () => {
-  setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+$('#mGrid').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-c]');if(!b)return;
+  paintShared(b.dataset.c);
 });
-(function initTheme(){
-  let saved = null;
-  try { saved = localStorage.getItem('kid-mbti-theme'); } catch(e){}
-  if (!saved) saved = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  setTheme(saved);
-})();
-
-/* ---------- 滚动进度 & TOC 高亮 ---------- */
-const progressEl = document.getElementById('scrollProgress');
-const tocLinks = [...document.querySelectorAll('#tocList a')];
-const sections = tocLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-
-function onScroll(){
-  const h = document.documentElement;
-  const max = h.scrollHeight - h.clientHeight;
-  progressEl.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
-
-  let current = sections[0];
-  for (const s of sections){
-    if (s.getBoundingClientRect().top <= 180) current = s;
-  }
-  tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+function paintShared(code){
+  const r=RESULTS[code];if(!r)return;
+  $('#rEmoji').innerHTML=ICON(code);
+  $('#rName').textContent=r.name;
+  $('#rCode').textContent='代号 '+code;
+  $('#rFoot').textContent=r.foot;
+  $('#rDesc').textContent=r.desc;
+  $('#rJobs').innerHTML=r.jobs.map(j=>`<li><b>${j[0]}</b> —— ${j[1]}</li>`).join('');
+  $('#rPain').textContent=r.pain;
+  $('#rAct').textContent=r.act;
+  $('#rAvoid').textContent=r.avoid;
+  $('#rDims').innerHTML='<div class="d" style="grid-column:1/-1;font-size:13px;opacity:.75">点击底部矩阵查看其他天赋兽 · 完整四维分布需本人完成测试</div>';
+  [...$('#mGrid').children].forEach(b=>b.classList.toggle('cur',b.dataset.c===code));
+  history.replaceState(null,'','#'+code);
 }
-window.addEventListener('scroll', onScroll, { passive:true });
-onScroll();
 
-/* ---------- 启动 ---------- */
-renderQuestion();
-renderRoster();
-checkShared();
+/* ============ 事件 ============ */
+$('#startBtn').onclick=()=>{idx=0;answers.fill(null);renderQ();show('quiz');};
+$('#prevBtn').onclick=()=>{if(idx>0){idx--;renderQ();}};
+$('#quitBtn').onclick=()=>show('cover');
+$('#againBtn').onclick=()=>{idx=0;answers.fill(null);renderQ();show('quiz');};
+$('#shareBtn').onclick=()=>{
+  const txt=`我的内在天赋是【${$('#rName').textContent}】${$('#rFoot').textContent}`;
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject())
+    .then(()=>toast('结果已复制，快去分享吧'))
+    .catch(()=>toast(txt));
+};
+let tT;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');
+  clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('on'),1800);}
+document.addEventListener('keydown',e=>{
+  if(current!=='quiz')return;
+  if(['1','2','3','4'].includes(e.key)){const i=+e.key-1;
+    if($('#qOpts').children[i])$('#qOpts').children[i].click();}
+});
+
+/* 从矩阵链接直达 */
+(function(){
+  const h=(location.hash||'').replace('#','').toUpperCase();
+  if(RESULTS[h]){idx=0;answers.fill(null);renderMatrix(h);paintShared(h);show('result');}
+})();
 </script>
 </body>
 </html>
